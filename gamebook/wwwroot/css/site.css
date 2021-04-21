@@ -69,3 +69,15 @@ body {
   white-space: nowrap;
   line-height: 60px; /* Vertically center the text there */
 }
+.character img {
+    display: block;
+    position: absolute;
+    right: 0px;
+    top: 57px;
+    width: 15vw;
+    border:solid 5px black;
+}
+.photos img {
+    width: 15vw;
+    margin:5px;
+}

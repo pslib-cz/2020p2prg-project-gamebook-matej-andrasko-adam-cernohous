@@ -29,21 +29,22 @@
             </div>
         </nav>
         <div class="character">
-            @if (Model.Character is "Bramborak")
+            @if (Model.Character == 0)
             {
-                <img src="~/img/" />
+                <img src="~/img/hrdinove_pribehu/bramborak.png" />
+            }
+            @if (Model.Character == 1)
+            {
+                <img src="~/img/hrdinove_pribehu/majsner.png" />
+            }
+            @if (Model.Character == 2)
+            {
+                <img src="~/img/hrdinove_pribehu/cmolik.png" />
+            }
 
-            }
-            @if (Model.Character is "Majsner")
-            {
-                <img src="~/img/" />
-            }
-            @if (Model.Character is "Jirka")
-            {
-                <img src="~/img/" />
-            }
         </div>
     </header>
+
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()

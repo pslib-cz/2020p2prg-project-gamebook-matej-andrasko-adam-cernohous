@@ -13,7 +13,7 @@ namespace gamebook.Pages
     {
         private readonly ILogger<IndexModel> _logger;
         [BindProperty]
-        public Characters Character { get; set; }
+        public int Character { get; set; }
 
         public IndexModel(ILogger<IndexModel> logger)
         {
@@ -22,7 +22,7 @@ namespace gamebook.Pages
 
         public void OnGet()
         {
-
+            Character =4;
         }
     }
 }
