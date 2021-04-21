@@ -5,6 +5,25 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Liberec:Become Homeless</h1>
+    <p>Vyber si svůj charakter</p>
+    <form method="post">
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" asp-for="Character" value="Bramborak">
+            <label class="form-check-label">Bramborák</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" asp-for="Character" value="Majsner">
+            <label class="form-check-label">Majsner</label>
+        </div>
+        <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" asp-for="Character" value="Jirka">
+            <label class="form-check-label">Jirka</label>
+        </div>
+        <div>
+            <button class="btn btn-primary" type="submit">Start</button>
+        </div>
+    </form>
+    <p>@Model.Character</p>         
+
 </div>

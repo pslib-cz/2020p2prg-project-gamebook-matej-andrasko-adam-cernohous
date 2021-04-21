@@ -1,5 +1,8 @@
+using gamebook.Models;
+using gamebook.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,6 +27,9 @@ namespace gamebook
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddScoped<ISessionStorage<GameState>, SessionStorage<GameState>>();
+            services.AddScoped<IPlaceMover, PlaceMover>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -28,6 +28,21 @@
                 </div>
             </div>
         </nav>
+        <div class="character">
+            @if (Model.Character is "Bramborak")
+            {
+                <img src="~/img/" />
+
+            }
+            @if (Model.Character is "Majsner")
+            {
+                <img src="~/img/" />
+            }
+            @if (Model.Character is "Jirka")
+            {
+                <img src="~/img/" />
+            }
+        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
