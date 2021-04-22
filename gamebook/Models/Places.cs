@@ -11,5 +11,13 @@ namespace gamebook.Models
         KFC = 1,
         Fgn = 2,
         Namesti = 3,
+        Benzinka =4,
+        ArmyShop =5,
+        Varna = 6,
+        Trafika = 7,
+        Letiste = 8,
+        Vecerka = 9,
+        Lidl = 10,
+        Mapa = 11
     }
 }

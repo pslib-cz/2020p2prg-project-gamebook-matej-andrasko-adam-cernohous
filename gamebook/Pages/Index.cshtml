@@ -11,7 +11,7 @@
 <div class="title">
     <div class="text-center">
         <h1 class="display-4">Liberec:Become Homeless</h1>
-        <p>Vyber si svůj charakter</p>
+        @*<p>Vyber si svůj charakter</p>*@
         <div class="photos">
             <img src="~/img/hrdinove_pribehu/bramborak.png" />
             <img src="~/img/hrdinove_pribehu/majsner.png" />
@@ -19,15 +19,19 @@
          </div>
         <form method="post">
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" asp-for="Character" value="0">
+                <input class="form-check-input" type="radio" asp-for="Character" value="Preset">
+                <label class="form-check-label">Vyber si svůj Charakter</label>
+            </div>
+            <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" asp-for="Character" value="Bramborak">
                 <label class="form-check-label">Bramborák</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" asp-for="Character" value="1">
+                <input class="form-check-input" type="radio" asp-for="Character" value="Majsner">
                 <label class="form-check-label">Majsner</label>
             </div>
             <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" asp-for="Character" value="2">
+                <input class="form-check-input" type="radio" asp-for="Character" value="Jirka">
                 <label class="form-check-label">Jirka</label>
             </div>
             <div>

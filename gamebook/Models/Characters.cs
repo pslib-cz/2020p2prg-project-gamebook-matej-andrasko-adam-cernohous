@@ -7,8 +7,9 @@ namespace gamebook.Models
 {
     public enum Characters
     {
-        Bramborak = 0,
-        Majsner = 1,
-        Jirka = 2
+        Preset = 0,
+        Bramborak = 1,
+        Majsner = 2,
+        Jirka = 3
     }
 }

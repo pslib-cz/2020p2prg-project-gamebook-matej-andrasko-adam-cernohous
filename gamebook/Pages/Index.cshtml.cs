@@ -1,4 +1,5 @@
 ﻿using gamebook.Models;
+using gamebook.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
@@ -11,18 +12,16 @@ namespace gamebook.Pages
 {
     public class IndexModel : PageModel
     {
-        private readonly ILogger<IndexModel> _logger;
         [BindProperty]
-        public int Character { get; set; }
-
-        public IndexModel(ILogger<IndexModel> logger)
-        {
-            _logger = logger;
-        }
+        public Characters Character { get; set; }
+        public GameState State { get; set; }
 
         public void OnGet()
         {
-            Character =4;
+        }
+        public ActionResult OnPost()
+        {
+            return RedirectToPage("/Place", new { character = Character });
         }
     }
 }
