@@ -1,24 +1,38 @@
 ﻿@page
 @model gamebook.Pages.PlaceModel
 @{
-}<h1>@Model.Location.Title</h1>
-<div>
-    @Html.Raw(Model.Location.Description)
-</div>
-<ul>
-    @foreach (var x in Model.Connections)
+}
+<div class="text-center">
+    <h1>@Model.Location.Title</h1>
+    <div>
+        @Html.Raw(Model.Location.Description)
+    </div>
+    <div>
+        <ul class="choose-ul">
+            @foreach (var x in Model.Connections)
 
-    {
-        <li>
-            @if (String.IsNullOrEmpty(x.SpecialPlace))
             {
-                <a asp-page="Place" asp-route-id="@x.NextPlace">@Html.Raw(x.Description)</a>
+                <li class="choose">
+                    @if (String.IsNullOrEmpty(x.SpecialPlace))
+                    {
+                        <a asp-page="Place" asp-route-id="@x.NextPlace">@Html.Raw(x.Description)</a>
+                    }
+                    else
+                    {
+                        <a asp-page="@x.SpecialPlace" asp-route-id="@x.NextPlace">@Html.Raw(x.Description)</a>
+                    }
+                </li>
             }
-            else
-            {
-                <a asp-page="@x.SpecialPlace" asp-route-id="@x.NextPlace">@Html.Raw(x.Description)</a>
-            }
-        </li>
-    }
-</ul>
+        </ul>
+        @if (Model.Location.Title == "Byt")
+        {
+            <div class="locations-imgs">
+                <img src="~/img/interier.jpg" />
+            </div>
+
+        }
+    </div>
+
+</div>
+
 

@@ -81,3 +81,33 @@ body {
     width: 15vw;
     margin:5px;
 }
+.choose-ul{
+     list-style-type:none;
+     display:flex;
+     position:absolute;
+     bottom:55px;
+
+}
+a{
+    text-decoration:none;
+    color:black
+}
+.choose-ul .choose {
+    flex-direction: row;
+    padding: 4px;
+    border: solid 2px black;
+    margin: 2px;
+}
+.choose-ul .choose:hover > a {
+    color: white;
+}
+.choose-ul .choose:hover {
+    background-color: black;
+}
+a:hover{
+    text-decoration:none;
+    color:black;
+}
+.locations-imgs img{
+    width: 60vw;
+}

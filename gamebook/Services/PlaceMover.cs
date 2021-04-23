@@ -11,33 +11,41 @@ namespace gamebook.Services
     {
         private readonly List<Location> _locations = new()
         {
-            new Location { Title="Byt", Description="Nacházíš se ve svém bytě, který už jsi neuklízel roky."},
+            new Location { Title = "Byt", Description = "Nacházíš se ve svém bytě, který už jsi neuklízel roky." },
             new Location { Title = "KFC", Description = "Tvůj džob...pokaždé co sem přijdeš, cítíš ten oder přepáleného tuku." },
-            new Location { Title = "FGN", Description = "Místo plné cigošů a bezďáků." },
+            new Location { Title = "FGN", Description = "FUJ! Takovej libereckej chánov!" },
             new Location { Title = "Trafika", Description = "Stará bába prodává nejlevnější cíga ve městě." },
             new Location { Title = "LIDL", Description = "Pokladna 4 VOLNÁÁÁ" },
-            new Location { Title = "Náměstí", Description = "" },
-            new Location { Title = "Army Shop", Description = "" },
-            new Location { Title = "Večerka", Description = "Dobý den...dal by si pán čerstvá jeblka nebo pomrdanče." },
+            new Location { Title = "Náměstí", Description = "Tady na námku dělaj ten nejlepší kebab." },
+            new Location { Title = "Army Shop", Description = "BUM! BUM! BUM! AK-47...nejlepší na trhu!" },
+            new Location { Title = "Večerka", Description = "Velká pán, více platit!" },
             new Location { Title = "Benzínka", Description = "Není lepší párek v rohlíku, než z benzínky." },
-            new Location { Title = "Varna", Description = "" },
-            new Location { Title = "Letiště", Description = "" },
-            new Location {Title ="Mapa", Description=""}
+            new Location { Title = "Varna", Description = "Tady vyrábíš to nejčistší piko ve městě!" },
+            new Location { Title = "Letiště", Description = "Tvoje cesta pryč z tohohle MORDORU!" },
+            new Location { Title = "Mapa", Description = "Mapa tohohle prohnilýho města." }
         };
 
         private readonly List<Connection> _map = new()
         {
-            new Connection { From = Places.Byt, NextPlace = Places.Mapa, Description = "<p>jdi obkouknout kam můžeš cestovat</p>" },
-            new Connection { From = Places.Mapa, NextPlace = Places.KFC, Description = "" },
-            new Connection { From = Places.Mapa, NextPlace = Places.Fgn, Description = "" },
-            new Connection { From = Places.Mapa, NextPlace = Places.Vecerka, Description = "" },
-            new Connection { From = Places.Mapa, NextPlace = Places.Benzinka, Description = "" },
-            new Connection { From = Places.Mapa, NextPlace = Places.ArmyShop, Description = "" },
-            new Connection { From = Places.Mapa, NextPlace = Places.Namesti, Description = "" },
-            new Connection { From = Places.Mapa, NextPlace = Places.Byt, Description = "" },
-            new Connection { From = Places.Mapa, NextPlace = Places.Letiste, Description = "" },
-            new Connection { From = Places.Fgn, NextPlace = Places.Trafika, Description = "" },
-            new Connection { From = Places.Byt, NextPlace = Places.Varna, Description = "" },
+            new Connection { From = Places.Byt, NextPlace = Places.Mapa, Description = "<p>JÍT OBKOUKNOUT MĚSTO</p>" },
+            new Connection { From = Places.Mapa, NextPlace = Places.KFC, Description = "<p>JÍT DO TVÉ VYSNĚNÉ PRÁCE V KFC</p>" },
+            new Connection { From = Places.Mapa, NextPlace = Places.Fgn, Description = "<p>JÍT OČÍHNOUT FUGNERKU</p>" },
+            new Connection { From = Places.Mapa, NextPlace = Places.Vecerka, Description = "<p>JÍT OČÍHNOUT FUGNERKU</p>" },
+            new Connection { From = Places.Mapa, NextPlace = Places.Benzinka, Description = "<p>PODÍVAT SE CO SE NA BENZIKU</p>" },
+            new Connection { From = Places.Mapa, NextPlace = Places.ArmyShop, Description = "<p>KOUKNOUT SE CO TEN STAREJ DĚDEK DNESKA PRODÁVÁ V ARMYSHOPU/p>" },
+            new Connection { From = Places.Mapa, NextPlace = Places.Namesti, Description = "<p>POBHLÍDNOUT SE PO NÁMĚSTÍ</p>" },
+            new Connection { From = Places.Mapa, NextPlace = Places.Byt, Description = "ZPĚT DO BYTU" },
+            new Connection { From = Places.Mapa, NextPlace = Places.Letiste, Description = "<p>CESTA ZA LEPŠÍM ŽIVOTEM</p>", SpecialPlace = "Letiste" },
+            new Connection { From = Places.KFC, NextPlace = Places.Mapa, Description = "<p>ZPĚT NA MAPU</p>" },
+            new Connection { From = Places.Fgn, NextPlace = Places.Mapa, Description = "<p>ZPĚT NA MAPU</p>" },
+            new Connection { From = Places.Vecerka, NextPlace = Places.Mapa, Description = "<p>ZPĚT NA MAPU</p>" },
+            new Connection { From = Places.Benzinka, NextPlace = Places.Mapa, Description = "<p>ZPĚT NA MAPU</p>" },
+            new Connection { From = Places.ArmyShop, NextPlace = Places.Mapa, Description = "<p>ZPĚT NA MAPU/p>" },
+            new Connection { From = Places.Namesti, NextPlace = Places.Mapa, Description = "<p>ZPĚT NA MAPU</p>" },
+            new Connection { From = Places.Letiste, NextPlace = Places.Mapa, Description = "<p>ZPĚT NA MAPU</p>" },
+            new Connection { From = Places.Fgn, NextPlace = Places.Trafika, Description = "<p>JÍT SI KOUPIT NĚJAKÝ CÍGA</p>" },
+            new Connection { From = Places.Trafika, NextPlace = Places.Fgn, Description = "<p>ZPĚT NA FUGNERKU</p>" },
+            new Connection { From = Places.Byt, NextPlace = Places.Varna, Description = "<p>UVAŘIT NĚJAKOU SPECIALTKU</p>", SpecialPlace = "Varna" },
 
 
         };
