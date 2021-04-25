@@ -24,13 +24,10 @@
                 </li>
             }
         </ul>
-        @if (Model.Location.Title == "Byt")
-        {
-            <div class="locations-imgs">
-                <img src="~/img/interier.jpg" />
-            </div>
+        <div class="locations-imgs">
+            <img src="~/img/@Model.Location.Pic"/>
+        </div>
 
-        }
     </div>
 
 </div>

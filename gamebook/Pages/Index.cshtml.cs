@@ -12,16 +12,27 @@ namespace gamebook.Pages
 {
     public class IndexModel : PageModel
     {
+        private const string KEY2 = "character";
+        private readonly ISessionStorage<GameState> _dd;
+
+        public IndexModel(ISessionStorage<GameState> dd)
+        {
+            _dd = dd;
+        }
+
         [BindProperty]
         public Characters Character { get; set; }
-        public GameState State { get; set; }
+        public GameState Chload { get; set; }
 
         public void OnGet()
         {
         }
         public ActionResult OnPost()
         {
-            return RedirectToPage("/Place", new { character = Character });
+            Chload = _dd.LoadOrCreate(KEY2);
+            Chload.Character = Character;
+            _dd.Save(KEY2, Chload);
+            return RedirectToPage("/Place");
         }
     }
 }
