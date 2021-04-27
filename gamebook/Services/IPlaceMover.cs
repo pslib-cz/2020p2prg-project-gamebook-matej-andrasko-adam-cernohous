@@ -10,7 +10,6 @@ namespace gamebook.Services
     {
         bool ExistLocation(Places id);
         Location GetLocation(Places id);
-        bool IsNavigationLegitimate(Places from, Places to, GameState state);
         List<Connection> GetConnectionsFrom(Places id);
         List<Connection> GetConnectionsTo(Places id);
     }

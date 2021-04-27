@@ -23,6 +23,7 @@ namespace gamebook.Pages
         [BindProperty]
         public Characters Character { get; set; }
         public GameState Chload { get; set; }
+        public int Money { get; set; } = 0; //jen tak
 
         public void OnGet()
         {

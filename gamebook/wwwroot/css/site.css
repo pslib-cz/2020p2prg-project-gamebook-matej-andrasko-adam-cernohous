@@ -78,7 +78,7 @@ body {
     border:solid 5px black;
 }
 .photos img {
-    width: 15vw;
+    width:15vw;
     margin:5px;
 }
 .choose-ul{
@@ -109,6 +109,16 @@ a:hover{
     text-decoration:none;
     color:black;
 }
+.locations-imgs{
+    width:1200px;
+}
 .locations-imgs img{
-    width: 60vw;
+    width: 1200px;
+}
+.money p{
+    color: green;
+    font-size: 15pt;
+    position: absolute;
+    top: 250px;
+    right: 0px;
 }

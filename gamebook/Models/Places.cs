@@ -18,6 +18,12 @@ namespace gamebook.Models
         Benzinka =8,
         Varna = 9,
         Letiste = 10,
-        Mapa = 11
+        Mapa = 11,
+        //------------------------
+        //dialog místnosti
+        KFC_DIAL_1 = 12,
+        KFC_DIAL_1_1 = 13,
+        KFC_DIAL_1_1_1 = 14,
+
     }
 }

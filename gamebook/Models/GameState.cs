@@ -10,6 +10,8 @@ namespace gamebook.Models
         public Places Location { get; set; }
         public int HP { get; set; }
         public Characters Character { get; set; }
+        public int Money { get; set; }
+
         public List<Item> Items { get; set; }
         
     }
