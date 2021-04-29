@@ -12,7 +12,7 @@ namespace gamebook.Models
         public Characters Character { get; set; }
         public int Money { get; set; }
 
-        public List<Item> Items { get; set; }
+        public List<Item> Items { get; set; } = new List<Item>();
         
     }
 }

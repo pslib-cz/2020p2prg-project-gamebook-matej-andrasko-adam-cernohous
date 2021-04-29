@@ -7,7 +7,8 @@ namespace gamebook.Models
 {
     public enum Item
     {
-        Pohrabáč =0,
+        Pernik =0,
         Glock = 1,
+
     }
 }

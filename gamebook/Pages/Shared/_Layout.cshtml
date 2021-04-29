@@ -50,8 +50,29 @@
             }
             else
             {
-                <p>@Model.Money</p>
+                <p>@Model.Money Kč</p>
             }
+        </div>
+        <div class="inventory">
+            @if (Model.itemy == null)
+            {
+
+            }
+            else
+            {
+                <ul>
+                    @foreach (var x in Model.itemy)
+                    {
+                        @if (x == Models.Item.Pernik)
+                        {
+                            <li><img src="~/img/piko.jpg" /></li>
+                        }
+
+                    }
+                </ul>
+            }
+
+
         </div>
     </header>
 

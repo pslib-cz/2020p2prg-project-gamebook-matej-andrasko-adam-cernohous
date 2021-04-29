@@ -101,6 +101,7 @@ a{
 }
 .choose-ul .choose:hover > a {
     color: white;
+    padding:5px;
 }
 .choose-ul .choose:hover {
     background-color: black;
@@ -109,11 +110,11 @@ a:hover{
     text-decoration:none;
     color:black;
 }
-.locations-imgs{
-    width:1200px;
+.locations-imgs {
+    width: 60vw;
 }
 .locations-imgs img{
-    width: 1200px;
+    width: 60vw;
 }
 .money p{
     color: green;
@@ -121,4 +122,20 @@ a:hover{
     position: absolute;
     top: 250px;
     right: 0px;
+    margin-right:10px;
+    font-weight:700;
+}
+.inventory {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    right: 0px;
+    top: 275px;
+    border: 2px solid black;
+}
+.inventory img{
+    width: 5vw;
+}
+.inventory li {
+    list-style-type: none;
 }

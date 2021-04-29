@@ -1,5 +1,5 @@
 ﻿@page
-@model gamebook.Pages.PlaceModel
+@model gamebook.Pages.VarnaModel
 @{
 }
 <div class="text-center">
@@ -10,10 +10,20 @@
     <div>
         <ul class="choose-ul">
             @foreach (var x in Model.Connections)
-
             {
             <li class="choose">
-                @if (String.IsNullOrEmpty(x.SpecialPlace) && String.IsNullOrEmpty(x.MoneyPlace))
+                @if (!String.IsNullOrEmpty(x.Moneydesc))
+                {
+                    @if (Model.itemy.Count< 5)
+                    {
+                        <a asp-page="Varna" asp-page-handler="AddPernik">@Html.Raw(x.Moneydesc)</a>
+                    }
+                    else
+                    {
+                        <p>Můžeš mít u sebe jen 5x piko</p>
+                    }
+                }
+                else if (String.IsNullOrEmpty(x.SpecialPlace))
                 {
                     <a asp-page="Place" asp-route-id="@x.NextPlace">@Html.Raw(x.Description)</a>
                 }
@@ -21,14 +31,7 @@
                 {
                     <a asp-page="Place" asp-route-id="@x.NextPlace" asp-route-m="@x.MoneyGet" asp-page-handler="MoneyGet">@Html.Raw(x.Moneydesc)</a>
                 }
-                else if (!String.IsNullOrEmpty(x.SpecialPlace))
-                {
-                    <a asp-page="@x.SpecialPlace" asp-route-id="@x.NextPlace">@Html.Raw(x.Description)</a>
-                }
-                else
-                {
-                    <p>(Vykradeno)</p>
-                }
+
             </li>
             }
         </ul>
@@ -38,5 +41,3 @@
     </div>
 
 </div>
-
-

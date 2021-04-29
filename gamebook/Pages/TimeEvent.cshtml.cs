@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace gamebook.Pages
 {
-    public class PlaceModel : PageModel
+    public class TimeEventModel : PageModel
     {
         private const string KEY = "game";
         private const string KEY2 = "character";
@@ -24,19 +24,18 @@ namespace gamebook.Pages
         public List<Connection> Connections { get; set; }
         [TempData]
         public bool Open { get; set; } = true;
-        public List<Item> itemy { get; set; }
         public GameState State { get; set; }
         public GameState Chload { get; set; }
         public int Money { get; set; }
 
-        public PlaceModel(ISessionStorage<GameState> ss, IPlaceMover pm, ISessionStorage<GameState> dd)
+        public TimeEventModel(ISessionStorage<GameState> ss, IPlaceMover pm, ISessionStorage<GameState> dd)
         {
             _ss = ss;
             _pm = pm;
             _dd = dd;
         }
 
-        public void OnGet(Places id, int m)
+        public void OnGet(Places id)
         {
             State = _ss.LoadOrCreate(KEY);
             State.Location = id;
@@ -49,10 +48,6 @@ namespace gamebook.Pages
             Chload = _dd.LoadOrCreate(KEY3);
             Money = Chload.Money;
             _dd.Save(KEY3, Chload);
-            
-            State = _ss.LoadOrCreate(KEY4);
-            itemy = State.Items;
-            _ss.Save(KEY4, State);
 
 
 
@@ -60,28 +55,6 @@ namespace gamebook.Pages
             Connections = _pm.GetConnectionsFrom(id);
 
 
-        }
-        public void OnGetMoneyGet(Places id, int m)
-        {
-            State = _ss.LoadOrCreate(KEY);
-            State.Location = id;
-            _ss.Save(KEY, State);
-            
-            Chload = _dd.LoadOrCreate(KEY2);
-            Character = Chload.Character;
-            _dd.Save(KEY2, Chload);
-
-            Chload = _dd.LoadOrCreate(KEY3);
-            Money = Chload.Money;
-            Money = Money + m;
-            Chload.Money = Chload.Money + m;
-            _dd.Save(KEY3, Chload);
-            Open = false;
-            TempData.Keep();
-
-            Location = _pm.GetLocation(id);
-            Connections = _pm.GetConnectionsFrom(id);
         }
     }
 }
-
