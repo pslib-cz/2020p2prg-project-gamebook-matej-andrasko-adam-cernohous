@@ -13,7 +13,7 @@ namespace gamebook.Services
         {
             new Location { Title = "Byt", Description = "Nacházíš se ve svém bytě, který už jsi neuklízel roky.", Pic = "interier.jpg" },
             new Location { Title = "KFC", Description = "Tvůj džob...pokaždé co sem přijdeš, cítíš ten oder přepáleného tuku.", Pic="kfc.png" },
-            new Location { Title = "FGN", Description = "FUJ! Takovej libereckej chánov!", Pic = "fugnerova_in_night.png" },
+            new Location { Title = "FGN", Description = "FUJ! Takovej libereckej chánov!", Pic = "fgn.jpg" },
             new Location { Title = "Trafika", Description = "Stará bába prodává nejlevnější cíga ve městě." },
             new Location { Title = "LIDL", Description = "Pokladna 4 VOLNÁÁÁ" },
             new Location { Title = "Náměstí", Description = "Tady na námku dělaj ten nejlepší kebab." },
@@ -26,7 +26,8 @@ namespace gamebook.Services
             new Location { Title = "KFC", Description="Manažer prodejny: Zase pozdě a uplně vožralej, ale tentokrát už ti to nedaruju. Sbal si všechny svoje věci a vypadni.", Pic="kfc.png"},
             new Location { Title= "KFC",Description = "Manažer prodejny: Nepros a vypadni, vypadni!!!",Pic="kfc.png" },//DIAL1_1
             new Location { Title="KFC", Description = "Manažer prodejny: Co jsem řekl to platí, takových co přišli jen jednou a víckrát se neukázali mám dost.", Pic="kfc.png"},//DIAL_1_1_1
-            new Location { Title = "Zakoutí Fugnerky", Description = "Místo kde se nejlépe dealuji piko" }
+            new Location { Title = "Zakoutí Fugnerky", Description = "Místo kde se nejlépe dealuji piko", Pic = "sellpiko.png" },
+            new Location { Title= "Vězení", Description = "Byl jsi chycen při páchání trestné činnosti a byli ti sebrány všechny věci"}
 
         };
 
@@ -56,7 +57,8 @@ namespace gamebook.Services
             new Connection { From = Places.Varna, NextPlace = Places.Byt, Description = "<p>ZPĚT DO BYTU</p>" },
             new Connection { From = Places.Fgn, NextPlace = Places.Zakouti, Description = "<p>JÍT PRODAT TVŮJ ORGINÁLNÍ VÝROBEK</p>", SpecialPlace="Prodavani"},
             new Connection { From = Places.Zakouti, NextPlace = Places.Fgn, Description = "<p>ZPĚT NA FGN</p>"},
-            new Connection { From = Places.Zakouti, NextPlace = Places.Fgn,MoneyPlace="Zakoutí Fgn", Moneydesc = "PRODAT TVŮJ VÝROBEK(+250)",MoneyGet = 250},
+            new Connection { From = Places.Zakouti, NextPlace = Places.Fgn,MoneyPlace="Zakoutí Fgn", Moneydesc = "PRODAT TVŮJ VÝROBEK(+1000)",MoneyGet = 1000},
+            new Connection { From = Places.Vezeni, NextPlace = Places.Byt, Description = "<p>ODĚJÍT Z VĚZENÍ</p>" },
 
             //---------------------
             //dialog sekvence kfc

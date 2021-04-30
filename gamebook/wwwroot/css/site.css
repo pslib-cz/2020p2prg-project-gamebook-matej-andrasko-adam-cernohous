@@ -111,10 +111,10 @@ a:hover{
     color:black;
 }
 .locations-imgs {
-    width: 60vw;
+    width: 50vw;
 }
 .locations-imgs img{
-    width: 60vw;
+    width: 50vw;
 }
 .money p{
     color: green;
@@ -133,11 +133,15 @@ a:hover{
     top: 275px;
     border: 2px solid black;
 }
+.inventory ul{
+    padding:0;
+}
 .inventory img{
     width: 5vw;
 }
 .inventory li {
     list-style-type: none;
+    margin:0;
 }
 .pegi > img{
     position:absolute;

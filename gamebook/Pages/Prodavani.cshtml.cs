@@ -18,6 +18,7 @@ namespace gamebook.Pages
         private readonly ISessionStorage<GameState> _ss;
         private readonly ISessionStorage<GameState> _dd;
         private readonly IPlaceMover _pm;
+        private Random _rn = new Random();
 
         public Location Location { get; set; }
         public Characters Character { get; set; }
@@ -25,6 +26,7 @@ namespace gamebook.Pages
         public List<Item> itemy { get; set; }
         [TempData]
         public bool Open { get; set; } = true;
+        public int Police { get; set;}
         public GameState State { get; set; }
         public GameState Chload { get; set; }
         public int Money { get; set; }
@@ -38,6 +40,7 @@ namespace gamebook.Pages
 
         public void OnGet(Places id)
         {
+            Police = _rn.Next(0, 10);
             State = _ss.LoadOrCreate(KEY);
             State.Location = id;
             _ss.Save(KEY, State);
@@ -58,6 +61,30 @@ namespace gamebook.Pages
             Connections = _pm.GetConnectionsFrom(id);
 
 
+        }
+        public void OnGetVezeni (Places id)
+        {
+            State = _ss.LoadOrCreate(KEY);
+            State.Location = id;
+            _ss.Save(KEY, State);
+
+            Chload = _dd.LoadOrCreate(KEY2);
+            Character = Chload.Character;
+            _dd.Save(KEY2, Chload);
+            
+            Chload = _dd.LoadOrCreate(KEY3);
+            Money = 0;
+            Chload.Money = Money;
+            _dd.Save(KEY3, Chload);
+
+            State = _ss.LoadOrCreate(KEY4);
+            itemy = State.Items;
+            itemy.Clear();
+            State.Items = itemy;
+            _ss.Save(KEY4, State);
+
+            Location = _pm.GetLocation(id);
+            Connections = _pm.GetConnectionsFrom(id);
         }
         public void OnGetProdat(Places id, int m)
         {

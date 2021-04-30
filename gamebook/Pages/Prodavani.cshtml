@@ -18,7 +18,14 @@
                 }
                 else if (!String.IsNullOrEmpty(x.MoneyPlace) && Model.itemy.Count > 0)
                 {
-                    <a asp-page="Prodavani" asp-route-id="@x.NextPlace" asp-route-m="@x.MoneyGet" asp-page-handler="Prodat">@Html.Raw(x.Moneydesc)</a>
+                    if (Model.Police > 7)
+                    {
+                        <a asp-page="Prodavani" asp-route-id="@Models.Places.Vezeni" asp-route-m="@x.MoneyGet" asp-page-handler="Vezeni">@Html.Raw(x.Moneydesc)</a>
+                    }
+                    else
+                    {
+                        <a asp-page="Prodavani" asp-route-id="@x.NextPlace" asp-route-m="@x.MoneyGet" asp-page-handler="Prodat">@Html.Raw(x.Moneydesc)</a>
+                    }
                 }
                 else if (!String.IsNullOrEmpty(x.MoneyPlace) && Model.itemy.Count == 0)
                 {
@@ -32,7 +39,14 @@
             }
         </ul>
         <div class="locations-imgs">
-            <img src="~/img/@Model.Location.Pic" />
+            @if (Model.Police > 7)
+            {
+                <img src="~/img/sellpikobenga.png" />
+            }
+            else
+            {
+                <img src="~/img/@Model.Location.Pic" />
+            }
         </div>
     </div>
 
