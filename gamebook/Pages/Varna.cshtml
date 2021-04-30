@@ -16,7 +16,7 @@
                 {
                     @if (Model.itemy.Count< 5)
                     {
-                        <a asp-page="Varna" asp-page-handler="AddPernik">@Html.Raw(x.Moneydesc)</a>
+                        <a asp-page="Varna" asp-route-id="@x.NextPlace" asp-page-handler="AddPernik">@Html.Raw(x.Moneydesc)</a>
                     }
                     else
                     {

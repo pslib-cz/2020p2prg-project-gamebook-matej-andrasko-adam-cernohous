@@ -1,0 +1,39 @@
+﻿@page
+@model gamebook.Pages.ProdavaniModel
+@{
+}
+<div class="text-center">
+    <h1>@Model.Location.Title</h1>
+    <div>
+        @Html.Raw(Model.Location.Description)
+    </div>
+    <div>
+        <ul class="choose-ul">
+            @foreach (var x in Model.Connections)
+            {
+            <li class="choose">
+                @if (String.IsNullOrEmpty(x.SpecialPlace) && String.IsNullOrEmpty(x.MoneyPlace))
+                {
+                    <a asp-page="Place" asp-route-id="@x.NextPlace">@Html.Raw(x.Description)</a>
+                }
+                else if (!String.IsNullOrEmpty(x.MoneyPlace) && Model.itemy.Count > 0)
+                {
+                    <a asp-page="Prodavani" asp-route-id="@x.NextPlace" asp-route-m="@x.MoneyGet" asp-page-handler="Prodat">@Html.Raw(x.Moneydesc)</a>
+                }
+                else if (!String.IsNullOrEmpty(x.MoneyPlace) && Model.itemy.Count == 0)
+                {
+                    <p>Všechno piko prodané</p>
+                }
+                else if (!String.IsNullOrEmpty(x.SpecialPlace))
+                {
+                    <a asp-page="@x.SpecialPlace" asp-route-id="@x.NextPlace">@Html.Raw(x.Description)</a>
+                }
+            </li>
+            }
+        </ul>
+        <div class="locations-imgs">
+            <img src="~/img/@Model.Location.Pic" />
+        </div>
+    </div>
+
+</div>

@@ -139,3 +139,9 @@ a:hover{
 .inventory li {
     list-style-type: none;
 }
+.pegi > img{
+    position:absolute;
+    left:0;
+    bottom:60px;
+    width:10vw;
+}
