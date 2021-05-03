@@ -27,7 +27,7 @@ namespace gamebook.Services
             new Location { Title= "KFC",Description = "Manažer prodejny: Nepros a vypadni, vypadni!!!",Pic="kfc.png" },//DIAL1_1
             new Location { Title="KFC", Description = "Manažer prodejny: Co jsem řekl to platí, takových co přišli jen jednou a víckrát se neukázali mám dost.", Pic="kfc.png"},//DIAL_1_1_1
             new Location { Title = "Zakoutí Fugnerky", Description = "Místo kde se nejlépe dealuji piko", Pic = "sellpiko.png" },
-            new Location { Title= "Vězení", Description = "Byl jsi chycen při páchání trestné činnosti a byli ti sebrány všechny věci"},
+            new Location { Title= "Vězení", Description = "Byl jsi chycen při páchání trestné činnosti a byli ti sebrány všechny věci", Pic = "vezeni.png"},
             new Location { Title = "Bazén", Description = "Místo kde ti stačí jen ždibet štěstí aby jsi se dostal k penězům" }
 
         };
