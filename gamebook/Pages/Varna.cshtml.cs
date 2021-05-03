@@ -15,6 +15,7 @@ namespace gamebook.Pages
         private const string KEY2 = "character";
         private const string KEY3 = "money";
         private const string KEY4 = "list";
+        private const string KEY5 = "hp";
         private readonly ISessionStorage<GameState> _ss;
         private readonly ISessionStorage<GameState> _dd;
         private readonly IPlaceMover _pm;
@@ -28,6 +29,7 @@ namespace gamebook.Pages
         public GameState State { get; set; }
         public GameState Chload { get; set; }
         public int Money { get; set; }
+        public int HP { get; set; }
 
         public VarnaModel(ISessionStorage<GameState> ss, IPlaceMover pm, ISessionStorage<GameState> dd)
         {
@@ -53,6 +55,10 @@ namespace gamebook.Pages
             State = _ss.LoadOrCreate(KEY4);
             itemy = State.Items;
             _ss.Save(KEY4, State);
+
+            State = _ss.LoadOrCreate(KEY5);
+            HP = State.HP;
+            _ss.Save(KEY5, State);
 
             Location = _pm.GetLocation(id);
             Connections = _pm.GetConnectionsFrom(id);
@@ -85,6 +91,10 @@ namespace gamebook.Pages
             }
             State.Items = itemy;
             _ss.Save(KEY4, State);
+
+            State = _ss.LoadOrCreate(KEY5);
+            HP = State.HP;
+            _ss.Save(KEY5, State);
 
 
             Location = _pm.GetLocation(id);

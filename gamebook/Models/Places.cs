@@ -26,7 +26,8 @@ namespace gamebook.Models
         KFC_DIAL_1_1_1 = 14,
         //------------------------
         Zakouti = 15,
-        Vezeni = 16
+        Vezeni = 16,
+        Bazen = 17
 
     }
 }

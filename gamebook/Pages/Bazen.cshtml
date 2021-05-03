@@ -1,0 +1,44 @@
+﻿@page
+@model gamebook.Pages.BazenModel
+@{
+}
+<div class="text-center">
+    <h1>@Model.Location.Title</h1>
+    <div>
+        @Html.Raw(Model.Location.Description)
+    </div>
+    <div>
+        @if (Model.Mess == true)
+        {
+            <div class="alert alert-danger" role="alert">
+                Skříňku se nepodařilo otevřít
+            </div>
+        }
+        else if (Model.MessTrue == true)
+        {
+            <div class="alert alert-success" role="alert">
+                Skříňku se podařilo otevřít
+            </div>
+        }
+        <ul class="choose-ul">
+            @foreach (var x in Model.Connections)
+
+            {
+                <li class="choose">
+                    @if (String.IsNullOrEmpty(x.SpecialPlace) && String.IsNullOrEmpty(x.MoneyPlace))
+                    {
+                        <a asp-page="Place" asp-route-id="@x.NextPlace">@Html.Raw(x.Description)</a>
+                    }
+                    else if (!String.IsNullOrEmpty(x.MoneyPlace))
+                    {
+                        <a asp-page="Bazen" asp-route-id="@x.NextPlace" asp-page-handler="Steal">@Html.Raw(x.Moneydesc)</a>
+                    }
+                </li>
+            }
+        </ul>
+        <div class="locations-imgs">
+            <img src="~/img/@Model.Location.Pic" />
+        </div>
+    </div>
+
+</div>

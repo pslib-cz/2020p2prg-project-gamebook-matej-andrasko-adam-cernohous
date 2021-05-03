@@ -27,7 +27,8 @@ namespace gamebook.Services
             new Location { Title= "KFC",Description = "Manažer prodejny: Nepros a vypadni, vypadni!!!",Pic="kfc.png" },//DIAL1_1
             new Location { Title="KFC", Description = "Manažer prodejny: Co jsem řekl to platí, takových co přišli jen jednou a víckrát se neukázali mám dost.", Pic="kfc.png"},//DIAL_1_1_1
             new Location { Title = "Zakoutí Fugnerky", Description = "Místo kde se nejlépe dealuji piko", Pic = "sellpiko.png" },
-            new Location { Title= "Vězení", Description = "Byl jsi chycen při páchání trestné činnosti a byli ti sebrány všechny věci"}
+            new Location { Title= "Vězení", Description = "Byl jsi chycen při páchání trestné činnosti a byli ti sebrány všechny věci"},
+            new Location { Title = "Bazén", Description = "Místo kde ti stačí jen ždibet štěstí aby jsi se dostal k penězům" }
 
         };
 
@@ -37,7 +38,7 @@ namespace gamebook.Services
             new Connection { From = Places.Mapa, NextPlace = Places.KFC, Description = "<p>JÍT DO TVÉ VYSNĚNÉ PRÁCE V KFC</p>" },
             new Connection { From = Places.Mapa, NextPlace = Places.Fgn, Description = "<p>JÍT OČÍHNOUT FUGNERKU</p>" },
             new Connection { From = Places.Mapa, NextPlace = Places.Vecerka, Description = "<p>JÍT NAKOUPIT NĚJAKÝ TO ZBOŽÍ DO VEČERKY</p>" },
-            new Connection { From = Places.Mapa, NextPlace = Places.Benzinka, Description = "<p>PODÍVAT SE CO SE NA BENZIKU</p>" },
+            new Connection { From = Places.Mapa, NextPlace = Places.Benzinka, Description = "<p>PODÍVAT NA BENZÍNKU</p>" },
             new Connection { From = Places.Mapa, NextPlace = Places.ArmyShop, Description = "<p> KOUKNOUT SE CO TEN STAREJ DĚDEK DNESKA PRODÁVÁ V ARMYSHOPU </p>" },
             new Connection { From = Places.Mapa, NextPlace = Places.Namesti, Description = "<p>POBHLÍDNOUT SE PO NÁMĚSTÍ</p>" },
             new Connection { From = Places.Mapa, NextPlace = Places.Byt, Description = "<p>ZPĚT DO BYTU</p>" },
@@ -59,6 +60,9 @@ namespace gamebook.Services
             new Connection { From = Places.Zakouti, NextPlace = Places.Fgn, Description = "<p>ZPĚT NA FGN</p>"},
             new Connection { From = Places.Zakouti, NextPlace = Places.Fgn,MoneyPlace="Zakoutí Fgn", Moneydesc = "PRODAT TVŮJ VÝROBEK(+1000)",MoneyGet = 1000},
             new Connection { From = Places.Vezeni, NextPlace = Places.Byt, Description = "<p>ODĚJÍT Z VĚZENÍ</p>" },
+            new Connection { From = Places.Bazen, NextPlace = Places.Mapa, Description = "<p>ZPĚT NA MAPU</p>" },
+            new Connection { From = Places.Mapa, NextPlace = Places.Bazen, Description = "<p>JÍT SE POROZHLÉDNOUT PO PENĚZÍCH K BAZÉNU</p>", SpecialPlace = "Bazen" },
+            new Connection { From = Places.Bazen, NextPlace = Places.Bazen, MoneyPlace = "Bazénové skříňky", Moneydesc = "VYKRÁST SKŘÍŇKU", SpecialPlace = "Bazen"},
 
             //---------------------
             //dialog sekvence kfc

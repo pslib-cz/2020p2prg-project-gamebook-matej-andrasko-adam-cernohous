@@ -111,10 +111,12 @@ a:hover{
     color:black;
 }
 .locations-imgs {
-    width: 50vw;
+    width: 60vw;
+    padding:0;
+    margin:0 auto;
 }
 .locations-imgs img{
-    width: 50vw;
+    width: 60vw;
 }
 .money p{
     color: green;
@@ -148,4 +150,21 @@ a:hover{
     left:0;
     bottom:60px;
     width:10vw;
+}
+.hp{
+    position:absolute;
+    left:0;
+    top:57px;
+}
+.hp ul{
+    display:flex;
+    padding:0;
+    margin:0;
+}
+.hp li{
+    list-style-type: none;
+    margin:0;
+}
+.hp li img{
+    width:3vw;
 }

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace gamebook.Pages
 {
-    public class PlaceModel : PageModel
+    public class BazenModel : PageModel
     {
         private const string KEY = "game";
         private const string KEY2 = "character";
@@ -19,6 +19,7 @@ namespace gamebook.Pages
         private readonly ISessionStorage<GameState> _ss;
         private readonly ISessionStorage<GameState> _dd;
         private readonly IPlaceMover _pm;
+        private Random _rn = new Random();
 
         public Location Location { get; set; }
         public Characters Character { get; set; }
@@ -30,15 +31,19 @@ namespace gamebook.Pages
         public GameState State { get; set; }
         public GameState Chload { get; set; }
         public int Money { get; set; }
+        [TempData]
+        public int Locked { get; set; }
+        public bool Mess { get; set; }
+        public bool MessTrue { get; set; }
 
-        public PlaceModel(ISessionStorage<GameState> ss, IPlaceMover pm, ISessionStorage<GameState> dd)
+        public BazenModel(ISessionStorage<GameState> ss, IPlaceMover pm, ISessionStorage<GameState> dd)
         {
             _ss = ss;
             _pm = pm;
             _dd = dd;
         }
 
-        public void OnGet(Places id, int m)
+        public void OnGet(Places id)
         {
             State = _ss.LoadOrCreate(KEY);
             State.Location = id;
@@ -51,7 +56,7 @@ namespace gamebook.Pages
             Chload = _dd.LoadOrCreate(KEY3);
             Money = Chload.Money;
             _dd.Save(KEY3, Chload);
-            
+
             State = _ss.LoadOrCreate(KEY4);
             itemy = State.Items;
             _ss.Save(KEY4, State);
@@ -60,30 +65,40 @@ namespace gamebook.Pages
             HP = State.HP;
             _ss.Save(KEY5, State);
 
-
-
             Location = _pm.GetLocation(id);
             Connections = _pm.GetConnectionsFrom(id);
-
+            
 
         }
-        public void OnGetMoneyGet(Places id, int m)
+        public void OnGetSteal(Places id)
         {
+            Locked = _rn.Next(0, 10);
+            TempData.Keep();
             State = _ss.LoadOrCreate(KEY);
             State.Location = id;
             _ss.Save(KEY, State);
-            
+
             Chload = _dd.LoadOrCreate(KEY2);
             Character = Chload.Character;
             _dd.Save(KEY2, Chload);
 
-            Chload = _dd.LoadOrCreate(KEY3);
-            Money = Chload.Money;
-            Money = Money + m;
-            Chload.Money = Chload.Money + m;
-            _dd.Save(KEY3, Chload);
-            Open = false;
-            TempData.Keep();
+            if (Locked < 2)
+            {
+                Chload = _dd.LoadOrCreate(KEY3);
+                Money = Chload.Money;
+                Money = Money + _rn.Next(20, 250);
+                Chload.Money = Money;
+                _dd.Save(KEY3, Chload);
+                MessTrue = true;
+            }
+            else
+            {
+                Chload = _dd.LoadOrCreate(KEY3);
+                Money = Chload.Money;
+                Chload.Money = Money;
+                _dd.Save(KEY3, Chload);
+                Mess = true;
+            }
 
             State = _ss.LoadOrCreate(KEY4);
             itemy = State.Items;
@@ -93,9 +108,10 @@ namespace gamebook.Pages
             HP = State.HP;
             _ss.Save(KEY5, State);
 
+
             Location = _pm.GetLocation(id);
             Connections = _pm.GetConnectionsFrom(id);
+
         }
     }
 }
-

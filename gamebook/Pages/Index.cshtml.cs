@@ -25,6 +25,7 @@ namespace gamebook.Pages
         public Characters Character { get; set; }
         public GameState Chload { get; set; }
         public List<Item> itemy { get; set; } = null;
+        public int HP { get; set; } = 0;
         public int Money { get; set; } = 0; //jen tak
 
         public void OnGet()
