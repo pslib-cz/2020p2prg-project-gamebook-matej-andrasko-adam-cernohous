@@ -85,7 +85,7 @@ body {
      list-style-type:none;
      display:flex;
      position:absolute;
-     bottom:55px;
+     bottom: 0px;
      left:0px;
 
 }

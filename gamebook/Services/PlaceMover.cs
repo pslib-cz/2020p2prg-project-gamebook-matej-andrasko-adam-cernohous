@@ -21,7 +21,7 @@ namespace gamebook.Services
             new Location { Title = "Večerka", Description = "Velká pán, více platit!",Pic="vecerka.png" },
             new Location { Title = "Benzínka", Description = "Není lepší párek v rohlíku, než z benzínky." },
             new Location { Title = "Varna", Description = "Tady vyrábíš to nejčistší piko ve městě!"},
-            new Location { Title = "Letiště", Description = "Tvoje cesta pryč z tohohle MORDORU!" },
+            new Location { Title = "Letiště", Description = "Tvoje cesta pryč z tohohle MORDORU!", Pic="letiste.jpg" },
             new Location { Title = "Mapa", Description = "Mapa tohohle prohnilýho města.", Pic ="mapa.JPG" },
             new Location { Title = "KFC", Description="Manažer prodejny: Zase pozdě a uplně vožralej, ale tentokrát už ti to nedaruju. Sbal si všechny svoje věci a vypadni.", Pic="kfc.png"},
             new Location { Title= "KFC",Description = "Manažer prodejny: Nepros a vypadni, vypadni!!!",Pic="kfc.png" },//DIAL1_1
@@ -39,7 +39,7 @@ namespace gamebook.Services
             new Connection { From = Places.Mapa, NextPlace = Places.Fgn, Description = "<p>JÍT OČÍHNOUT FUGNERKU</p>" },
             new Connection { From = Places.Mapa, NextPlace = Places.Vecerka, Description = "<p>JÍT NAKOUPIT NĚJAKÝ TO ZBOŽÍ DO VEČERKY</p>" },
             new Connection { From = Places.Mapa, NextPlace = Places.Benzinka, Description = "<p>PODÍVAT NA BENZÍNKU</p>" },
-            new Connection { From = Places.Mapa, NextPlace = Places.ArmyShop, Description = "<p> KOUKNOUT SE CO TEN STAREJ DĚDEK DNESKA PRODÁVÁ V ARMYSHOPU </p>" },
+            new Connection { From = Places.Mapa, NextPlace = Places.ArmyShop, Description = "<p> KOUKNOUT SE CO TEN STAREJ DĚDEK DNESKA PRODÁVÁ V ARMYSHOPU </p>", SpecialPlace= "ArmyShop" },
             new Connection { From = Places.Mapa, NextPlace = Places.Namesti, Description = "<p>POBHLÍDNOUT SE PO NÁMĚSTÍ</p>" },
             new Connection { From = Places.Mapa, NextPlace = Places.Byt, Description = "<p>ZPĚT DO BYTU</p>" },
             new Connection { From = Places.Mapa, NextPlace = Places.Letiste, Description = "<p>CESTA ZA LEPŠÍM ŽIVOTEM</p>", SpecialPlace = "Letiste" },
@@ -53,25 +53,28 @@ namespace gamebook.Services
             new Connection { From = Places.Fgn, NextPlace = Places.Trafika, Description = "<p>JÍT SI KOUPIT NĚJAKÝ CÍGA</p>" },
             new Connection { From = Places.Trafika, NextPlace = Places.Fgn, Description = "<p>ZPĚT NA FUGNERKU</p>" },
             new Connection { From = Places.Byt, NextPlace = Places.Varna, Description = "<p>UVAŘIT NĚJAKOU SPECIALTKU</p>", SpecialPlace = "Varna" },
-            new Connection { From= Places.Vecerka, NextPlace = Places.Vecerka, MoneyPlace = "Vecerka", Moneydesc ="<p>OKRÁST (+1000)</p>", MoneyGet = 1000},
-            new Connection { From = Places.Varna, NextPlace=Places.Byt, Moneydesc= "<p>UVAŘIT PERNÍK (PERNÍK +1)</p>" },
+            new Connection { From = Places.Vecerka, NextPlace = Places.Vecerka, MoneyPlace = "Vecerka", Moneydesc = "<p>OKRÁST (+1000)</p>", MoneyGet = 250 },
+            new Connection { From = Places.Varna, NextPlace = Places.Byt, Moneydesc = "<p>UVAŘIT PERNÍK (PERNÍK +1)</p>" },
             new Connection { From = Places.Varna, NextPlace = Places.Byt, Description = "<p>ZPĚT DO BYTU</p>" },
-            new Connection { From = Places.Fgn, NextPlace = Places.Zakouti, Description = "<p>JÍT PRODAT TVŮJ ORGINÁLNÍ VÝROBEK</p>", SpecialPlace="Prodavani"},
-            new Connection { From = Places.Zakouti, NextPlace = Places.Fgn, Description = "<p>ZPĚT NA FGN</p>"},
-            new Connection { From = Places.Zakouti, NextPlace = Places.Fgn,MoneyPlace="Zakoutí Fgn", Moneydesc = "PRODAT TVŮJ VÝROBEK(+1000)",MoneyGet = 1000},
+            new Connection { From = Places.Fgn, NextPlace = Places.Zakouti, Description = "<p>JÍT PRODAT TVŮJ ORGINÁLNÍ VÝROBEK</p>", SpecialPlace = "Prodavani" },
+            new Connection { From = Places.Zakouti, NextPlace = Places.Fgn, Description = "<p>ZPĚT NA FGN</p>" },
+            new Connection { From = Places.Zakouti, NextPlace = Places.Fgn, MoneyPlace = "Zakoutí Fgn", Moneydesc = "PRODAT TVŮJ VÝROBEK(+1000)", MoneyGet = 250 },
             new Connection { From = Places.Vezeni, NextPlace = Places.Byt, Description = "<p>ODĚJÍT Z VĚZENÍ</p>" },
             new Connection { From = Places.Bazen, NextPlace = Places.Mapa, Description = "<p>ZPĚT NA MAPU</p>" },
             new Connection { From = Places.Mapa, NextPlace = Places.Bazen, Description = "<p>JÍT SE POROZHLÉDNOUT PO PENĚZÍCH K BAZÉNU</p>", SpecialPlace = "Bazen" },
-            new Connection { From = Places.Bazen, NextPlace = Places.Bazen, MoneyPlace = "Bazénové skříňky", Moneydesc = "VYKRÁST SKŘÍŇKU", SpecialPlace = "Bazen"},
+            new Connection { From = Places.Bazen, NextPlace = Places.Bazen, MoneyPlace = "Bazénové skříňky", Moneydesc = "VYKRÁST SKŘÍŇKU", SpecialPlace = "Bazen" },
+            new Connection { From = Places.Trafika, NextPlace = Places.Trafika, BuyingPlace = "Nákup Cíg", HpUp = 1, Cost = 200, Description="KOUPIT CÍGA (HP+1 CASH -200)" },
+            new Connection { From = Places.Benzinka, NextPlace = Places.Benzinka, BuyingPlace = "Nákup párku v rohlíku", HpUp = 1, Cost = 100, Description = "KOUPIT NEJLUXUSNĚJŠÍ PÁREK V ROHLÍKU V OKOLOÍ (HP+1 CASH -100)" },
+            new Connection { From = Places.ArmyShop, NextPlace = Places.ArmyShop,Description="KOUPIT GLOCK (-10000)", SpecialPlace="ArmyShop"},
 
             //---------------------
             //dialog sekvence kfc
-            new Connection { From = Places.KFC, NextPlace = Places.KFC_DIAL_1, Description="<p>Dobrej šéfe</p>"},
-            new Connection { From = Places.KFC_DIAL_1, NextPlace = Places.Mapa, Description = "<p>Udav se ty špíno</p>" },
-            new Connection { From = Places.KFC_DIAL_1, NextPlace = Places.KFC_DIAL_1_1, Description = "<p>Slibuji že už se to nestane</p>" },
-            new Connection { From = Places.KFC_DIAL_1_1, NextPlace = Places.Mapa, Description = "<p>Běž se bodnout</p>" },
-            new Connection { From = Places.KFC_DIAL_1_1, NextPlace = Places.KFC_DIAL_1_1_1, Description = "<p>Prosíím slibuji že už se to víckrát nestane.</p>" },
-            new Connection { From = Places.KFC_DIAL_1_1_1, NextPlace = Places.Mapa, Description = "<p>Běž někam</p>" }
+            new Connection { From = Places.KFC, NextPlace = Places.KFC_DIAL_1, Description="<p>DOBREJ ŠÉFE</p>"},
+            new Connection { From = Places.KFC_DIAL_1, NextPlace = Places.Mapa, Description = "<p>UDAV SE TY ŠPÍNO</p>" },
+            new Connection { From = Places.KFC_DIAL_1, NextPlace = Places.KFC_DIAL_1_1, Description = "<p>SLIBUJU ŽE UŽ SE TO NESTANE</p>" },
+            new Connection { From = Places.KFC_DIAL_1_1, NextPlace = Places.Mapa, Description = "<p>BĚŽ SE BODNOUT</p>" },
+            new Connection { From = Places.KFC_DIAL_1_1, NextPlace = Places.KFC_DIAL_1_1_1, Description = "<p>PROSÍÍM SLIBUJU ŽE UŽ SE TO VÍCKRÁT NESTANE.</p>" },
+            new Connection { From = Places.KFC_DIAL_1_1_1, NextPlace = Places.Mapa, Description = "<p>BĚŽ NĚKAM</p>" }
 
 
 

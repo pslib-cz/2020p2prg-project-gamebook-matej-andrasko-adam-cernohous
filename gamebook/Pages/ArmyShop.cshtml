@@ -1,5 +1,5 @@
 ﻿@page
-@model gamebook.Pages.PlaceModel
+@model gamebook.Pages.ArmyShopModel
 @{
 }
 <div class="text-center">
@@ -10,10 +10,20 @@
     <div>
         <ul class="choose-ul">
             @foreach (var x in Model.Connections)
-
             {
             <li class="choose">
-                @if (String.IsNullOrEmpty(x.SpecialPlace) && String.IsNullOrEmpty(x.MoneyPlace) && String.IsNullOrEmpty(x.BuyingPlace))
+                @if (!String.IsNullOrEmpty(x.SpecialPlace))
+                {
+                    @if (Model.Money >= 10000)
+                    {
+                        <a asp-page="ArmyShop" asp-route-id="@x.NextPlace" asp-page-handler="Weapon">KOUPIT GLOCK (-10000)</a>
+                    }
+                    else
+                    {
+                        <p>VRAŤ SE AŽ BUDEŠ MÍT 10000 Kč</p>
+                    }
+                }
+                else if (String.IsNullOrEmpty(x.SpecialPlace))
                 {
                     <a asp-page="Place" asp-route-id="@x.NextPlace">@Html.Raw(x.Description)</a>
                 }
@@ -21,18 +31,7 @@
                 {
                     <a asp-page="Place" asp-route-id="@x.NextPlace" asp-route-m="@x.MoneyGet" asp-page-handler="MoneyGet">@Html.Raw(x.Moneydesc)</a>
                 }
-                else if (!String.IsNullOrEmpty(x.BuyingPlace))
-                {
-                    <a asp-page="Place" asp-route-id="@x.NextPlace" asp-route-h="@x.HpUp" asp-route-m="@x.Cost" asp-page-handler="Buy">@Html.Raw(x.Description)</a>
-                }
-                else if (!String.IsNullOrEmpty(x.SpecialPlace))
-                {
-                    <a asp-page="@x.SpecialPlace" asp-route-id="@x.NextPlace">@Html.Raw(x.Description)</a>
-                }
-                else
-                {
-                    <p>(Vykradeno)</p>
-                }
+
             </li>
             }
         </ul>
@@ -42,5 +41,3 @@
     </div>
 
 </div>
-
-

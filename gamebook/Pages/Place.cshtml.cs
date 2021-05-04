@@ -96,6 +96,37 @@ namespace gamebook.Pages
             Location = _pm.GetLocation(id);
             Connections = _pm.GetConnectionsFrom(id);
         }
+        public void OnGetBuy(Places id, int m, int h)
+        {
+            State = _ss.LoadOrCreate(KEY);
+            State.Location = id;
+            _ss.Save(KEY, State);
+
+            Chload = _dd.LoadOrCreate(KEY2);
+            Character = Chload.Character;
+            _dd.Save(KEY2, Chload);
+
+            Chload = _dd.LoadOrCreate(KEY3);
+            Money = Chload.Money;
+            Money -= m;
+            Chload.Money = Money;
+            _dd.Save(KEY3, Chload);
+
+            State = _ss.LoadOrCreate(KEY4);
+            itemy = State.Items;
+            _ss.Save(KEY4, State);
+
+            State = _ss.LoadOrCreate(KEY5);
+            HP = State.HP;
+            HP += h;
+            State.HP = HP;
+            _ss.Save(KEY5, State);
+
+
+
+            Location = _pm.GetLocation(id);
+            Connections = _pm.GetConnectionsFrom(id);
+        }
     }
 }
 

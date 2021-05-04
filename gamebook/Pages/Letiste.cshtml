@@ -1,0 +1,38 @@
+﻿@page
+@model gamebook.Pages.LetisteModel
+@{
+}
+<div class="text-center">
+    <h1>@Model.Location.Title</h1>
+    <div>
+        @Html.Raw(Model.Location.Description)
+    </div>
+    <div>
+        <ul class="choose-ul">
+            @foreach (var x in Model.Connections)
+            {
+                <li class="choose">
+                    @if (String.IsNullOrEmpty(x.SpecialPlace) && String.IsNullOrEmpty(x.MoneyPlace))
+                    {
+                        <a asp-page="Place" asp-route-id="@x.NextPlace">@Html.Raw(x.Description)</a>
+                    }
+                </li>
+                @if (Model.Money >= 20000)
+                {
+                    <li class="choose">
+                        <a asp-page="Privacy">Odletět z města</a>
+                    </li>
+                }
+                else
+                {
+                    <li class="choose">
+                        <p>Odletět z města můžeš, až budeš mít 20K.</p>
+                    </li>
+                }
+            }
+        </ul>
+        <div class="locations-imgs">
+            <img src="~/img/@Model.Location.Pic" />
+        </div>
+    </div>
+</div>

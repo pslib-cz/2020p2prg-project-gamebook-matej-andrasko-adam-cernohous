@@ -67,6 +67,10 @@
                         {
                             <li><img src="~/img/piko.jpg" /></li>
                         }
+                        else if(x == Models.Item.Glock)
+                        {
+                            <li><img src="~/img/Glock.jpg"/></li>
+                        }
 
                     }
                 </ul>
@@ -97,12 +101,6 @@
             @RenderBody()
         </main>
     </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2021 - gamebook - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
