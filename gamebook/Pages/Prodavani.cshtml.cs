@@ -32,6 +32,8 @@ namespace gamebook.Pages
         public GameState Chload { get; set; }
         public int Money { get; set; }
         public int HP { get; set; }
+        public int number { get; set; }
+        public string Sound { get; set; }
 
         public ProdavaniModel(ISessionStorage<GameState> ss, IPlaceMover pm, ISessionStorage<GameState> dd)
         {
@@ -65,6 +67,15 @@ namespace gamebook.Pages
 
             Location = _pm.GetLocation(id);
             Connections = _pm.GetConnectionsFrom(id);
+            if (Location.Sound is null)
+            {
+
+            }
+            else
+            {
+                number = _rn.Next(0, Location.Sound.Count);
+                Sound = Location.Sound[number];
+            }
 
 
         }

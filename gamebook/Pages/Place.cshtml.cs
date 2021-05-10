@@ -19,6 +19,7 @@ namespace gamebook.Pages
         private readonly ISessionStorage<GameState> _ss;
         private readonly ISessionStorage<GameState> _dd;
         private readonly IPlaceMover _pm;
+        private Random _rn = new Random();
 
         public Location Location { get; set; }
         public Characters Character { get; set; }
@@ -30,6 +31,8 @@ namespace gamebook.Pages
         public GameState State { get; set; }
         public GameState Chload { get; set; }
         public int Money { get; set; }
+        public int number { get; set; }
+        public string Sound { get; set; }
 
         public PlaceModel(ISessionStorage<GameState> ss, IPlaceMover pm, ISessionStorage<GameState> dd)
         {
@@ -65,6 +68,18 @@ namespace gamebook.Pages
             Location = _pm.GetLocation(id);
             Connections = _pm.GetConnectionsFrom(id);
 
+            if (Location.Sound is null)
+            {
+
+            }
+            else
+            {
+                number = _rn.Next(0, Location.Sound.Count);
+                Sound = Location.Sound[number];
+            }
+
+
+
 
         }
         public void OnGetMoneyGet(Places id, int m)
@@ -76,18 +91,28 @@ namespace gamebook.Pages
             Chload = _dd.LoadOrCreate(KEY2);
             Character = Chload.Character;
             _dd.Save(KEY2, Chload);
+            
+            State = _ss.LoadOrCreate(KEY4);
+            itemy = State.Items;
+            _ss.Save(KEY4, State);
 
             Chload = _dd.LoadOrCreate(KEY3);
             Money = Chload.Money;
-            Money = Money + m;
-            Chload.Money = Chload.Money + m;
+            if (itemy.Contains(Item.Glock))
+            {
+                Money = Money + m*10;
+            }
+            else
+            {
+                Money = Money + m;
+            }
+
+            Chload.Money = Money;
             _dd.Save(KEY3, Chload);
             Open = false;
             TempData.Keep();
 
-            State = _ss.LoadOrCreate(KEY4);
-            itemy = State.Items;
-            _ss.Save(KEY4, State);
+
 
             State = _ss.LoadOrCreate(KEY5);
             HP = State.HP;
@@ -95,6 +120,8 @@ namespace gamebook.Pages
 
             Location = _pm.GetLocation(id);
             Connections = _pm.GetConnectionsFrom(id);
+
+
         }
         public void OnGetBuy(Places id, int m, int h)
         {

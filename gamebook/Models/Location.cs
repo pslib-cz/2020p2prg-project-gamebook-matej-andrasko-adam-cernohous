@@ -12,6 +12,7 @@ namespace gamebook.Models
         public string Title { get; set; }
         public string Description { get; set; }
         public string Pic { get; set; }
+        public List<string> Sound { get; set; }
         public string StoryLine { get; set; }
     }
 }

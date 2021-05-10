@@ -89,6 +89,10 @@ body {
      left:0px;
 
 }
+.choose-ul li p{
+    font-size:14pt;
+    margin:0;
+}
 a{
     text-decoration:none;
     color:black

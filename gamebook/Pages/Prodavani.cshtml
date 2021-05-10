@@ -16,7 +16,7 @@
                 {
                     <a asp-page="Place" asp-route-id="@x.NextPlace">@Html.Raw(x.Description)</a>
                 }
-                else if (!String.IsNullOrEmpty(x.MoneyPlace) && Model.itemy.Count > 0)
+                else if (!String.IsNullOrEmpty(x.MoneyPlace) && Model.itemy.Contains(Models.Item.Pernik))
                 {
                     if (Model.Police > 7)
                     {
@@ -51,3 +51,6 @@
     </div>
 
 </div>
+<audio autoplay>
+    <source src="~/sound/@Model.Sound" type="audio/mpeg">
+</audio>

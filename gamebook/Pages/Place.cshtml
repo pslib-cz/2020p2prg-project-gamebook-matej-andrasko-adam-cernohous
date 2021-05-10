@@ -19,7 +19,15 @@
                 }
                 else if (!String.IsNullOrEmpty(x.MoneyPlace) && Model.Open == true)
                 {
-                    <a asp-page="Place" asp-route-id="@x.NextPlace" asp-route-m="@x.MoneyGet" asp-page-handler="MoneyGet">@Html.Raw(x.Moneydesc)</a>
+                    @if (Model.itemy.Contains(Models.Item.Glock))
+                    {
+                        <a asp-page="Place" asp-route-id="@x.NextPlace" asp-route-m="@x.MoneyGet" asp-page-handler="MoneyGet">@Html.Raw(x.Moneydesc) MÁŠ GLOCK (MONEY*10))</a>
+                    }
+                    else
+                    {
+                        <a asp-page="Place" asp-route-id="@x.NextPlace" asp-route-m="@x.MoneyGet" asp-page-handler="MoneyGet">@Html.Raw(x.Moneydesc)</a>
+                    }
+
                 }
                 else if (!String.IsNullOrEmpty(x.BuyingPlace))
                 {
@@ -42,5 +50,7 @@
     </div>
 
 </div>
-
+<audio autoplay>
+    <source src="~/sound/@Model.Sound" type="audio/mpeg">
+</audio>
 

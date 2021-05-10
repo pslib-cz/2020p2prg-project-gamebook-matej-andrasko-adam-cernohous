@@ -19,6 +19,7 @@ namespace gamebook.Pages
         private readonly ISessionStorage<GameState> _ss;
         private readonly ISessionStorage<GameState> _dd;
         private readonly IPlaceMover _pm;
+        private Random _rn = new Random();
 
         public Location Location { get; set; }
         public Characters Character { get; set; }
@@ -30,6 +31,8 @@ namespace gamebook.Pages
         public GameState State { get; set; }
         public GameState Chload { get; set; }
         public int Money { get; set; }
+        public int number { get; set; }
+        public string Sound { get; set; }
 
         public ArmyShopModel(ISessionStorage<GameState> ss, IPlaceMover pm, ISessionStorage<GameState> dd)
         {
@@ -64,6 +67,15 @@ namespace gamebook.Pages
 
             Location = _pm.GetLocation(id);
             Connections = _pm.GetConnectionsFrom(id);
+            if (Location.Sound is null)
+            {
+
+            }
+            else
+            {
+                number = _rn.Next(0, Location.Sound.Count);
+                Sound = Location.Sound[number];
+            }
 
 
         }
