@@ -14,13 +14,13 @@ namespace gamebook.Services
             new Location { Title = "Byt", Description = "Nacházíš se ve svém bytě, který už jsi neuklízel roky.", Pic = "interier.jpg" },
             new Location { Title = "KFC", Description = "Tvůj džob...pokaždé co sem přijdeš, cítíš ten oder přepáleného tuku.", Pic="kfc.png" },
             new Location { Title = "FGN", Description = "FUJ! Takovej libereckej chánov!", Pic = "fgn.jpg" },
-            new Location { Title = "Trafika", Description = "Zde prodávaj nejlepší cíga ve městě.", Sound = new List<string> { "trafika1sound.mp3", "trafika2sound.mp3"} },
+            new Location { Title = "Trafika", Description = "Zde prodávaj nejlepší cíga ve městě.", Sound = new List<string> { "trafika1sound.mp3", "trafika2sound.mp3"}, Pic = "trafika.png" },
             new Location { Title = "LIDL", Description = "Pokladna 4 VOLNÁÁÁ", Pic="lidl.png",Sound = new List<string> { "lidl1sound.mp3", "lidl2sound.mp3", "lidl3sound.mp3" } },
-            new Location { Title = "Náměstí", Description = "Tady na námku dělaj ten nejlepší kebab." },
+            new Location { Title = "Náměstí", Description = "Tady na námku dělaj ten nejlepší kebab.", Pic = "namesti.jpg" },
             new Location { Title = "Army Shop", Description = "Jak moje máma vždycky říkala, nábojů není nikdy dost!", Pic="army_shop.png", Sound = new List<string> { "armyshopsound.mp3"} },
             new Location { Title = "Večerka", Description = "Velká pán, více platit!",Pic="vecerka.png", Sound = new List<string> { "vecerka1sound.mp3", "vecerka2sound.mp3"} },
             new Location { Title = "Benzínka", Description = "Není lepší párek v rohlíku, než z benzínky.", Pic= "benzinka.png" },
-            new Location { Title = "Varna", Description = "Tady vyrábíš to nejčistší piko ve městě!"},
+            new Location { Title = "Varna", Description = "Tady vyrábíš to nejčistší piko ve městě!", Pic = "varna.jpg"},
             new Location { Title = "Letiště", Description = "Tvoje cesta pryč z tohohle MORDORU!", Pic="letiste.jpg" },
             new Location { Title = "Mapa", Description = "Mapa tohohle prohnilýho města.", Pic ="mapa.JPG" },
             new Location { Title = "KFC", Description="Manažer prodejny: Zase pozdě a uplně vožralej, ale tentokrát už ti to nedaruju. Sbal si všechny svoje věci a vypadni.", Pic="kfc.png"},
@@ -28,7 +28,8 @@ namespace gamebook.Services
             new Location { Title="KFC", Description = "Manažer prodejny: Co jsem řekl to platí, takových co přišli jen jednou a víckrát se neukázali mám dost.", Pic="kfc.png"},//DIAL_1_1_1
             new Location { Title = "Zakoutí Fugnerky", Description = "Místo kde se nejlépe dealuji piko", Pic = "sellpiko.png", Sound= new List<string>{"pernik1sound.mp3", "pernik2sound.mp3", "pernik3sound.mp3" } },
             new Location { Title= "Vězení", Description = "Byl jsi chycen při páchání trestné činnosti a byli ti sebrány všechny věci", Pic = "vezeni.png"},
-            new Location { Title = "Bazén", Description = "Místo kde ti stačí jen ždibet štěstí aby jsi se dostal k penězům" }
+            new Location { Title = "Bazén", Description = "Místo kde ti stačí jen ždibet štěstí aby jsi se dostal k penězům", Pic = "skrinky.jpg" },
+            new Location { Title = "Boj", Description = "Dej mu co proto!!!", Pic="fandafight.PNG" }
 
         };
 
@@ -70,6 +71,8 @@ namespace gamebook.Services
             new Connection { From = Places.Trafika, NextPlace = Places.Trafika, BuyingPlace = "Nákup Cíg", HpUp = 1, Cost = 200, Description="KOUPIT CÍGA (HP+1 CASH -200)" },
             new Connection { From = Places.Benzinka, NextPlace = Places.Benzinka, BuyingPlace = "Nákup párku v rohlíku", HpUp = 1, Cost = 100, Description = "KOUPIT NEJLUXUSNĚJŠÍ PÁREK V ROHLÍKU V OKOLOÍ (HP+1 CASH -100)" },
             new Connection { From = Places.ArmyShop, NextPlace = Places.ArmyShop,Description="KOUPIT GLOCK (-10000)", SpecialPlace="ArmyShop"},
+            new Connection { From = Places.Namesti, NextPlace = Places.BojNaNamesti, Description = "ZBÍT NĚKOHO KVŮLI PENĚZŮM", SpecialPlace = "namestiBoj"},
+            new Connection { From = Places.BojNaNamesti, NextPlace = Places.BojNaNamesti, MoneyPlace = "Boj Na Náměstí",Moneydesc="DÁT RÁNU", SpecialPlace = "BojNaNamesti"},
 
             //---------------------
             //dialog sekvence kfc

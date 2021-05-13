@@ -145,13 +145,26 @@ namespace gamebook.Pages
             }
             else
             {
-                Money -= m;
-                Chload.Money = Money;
-                _dd.Save(KEY3, Chload);
+                if (HP != 5)
+                {
+                    Money -= m;
+                    Chload.Money = Money;
+                    _dd.Save(KEY3, Chload);
 
-                HP += h;
-                State.HP = HP;
-                _ss.Save(KEY5, State);
+                    HP += h;
+                    State.HP = HP;
+                    _ss.Save(KEY5, State);
+                }
+                else
+                {
+                    Chload.Money = Money;
+                    _dd.Save(KEY3, Chload);
+                    
+                    State.HP = HP;
+                    _ss.Save(KEY5, State);
+
+                }
+
             }
 
             State = _ss.LoadOrCreate(KEY4);

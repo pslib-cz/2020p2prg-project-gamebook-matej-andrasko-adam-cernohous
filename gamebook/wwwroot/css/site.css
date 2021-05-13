@@ -87,6 +87,7 @@ body {
      position:absolute;
      bottom: 0px;
      left:0px;
+     padding:0;
 
 }
 .choose-ul li p{
@@ -102,6 +103,7 @@ a{
     padding: 4px;
     border: solid 2px black;
     margin: 2px;
+    background-color:white;
 }
 .choose-ul .choose:hover > a {
     color: white;

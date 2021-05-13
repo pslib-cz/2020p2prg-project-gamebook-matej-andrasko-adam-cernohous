@@ -27,7 +27,8 @@ namespace gamebook.Models
         //------------------------
         Zakouti = 15,
         Vezeni = 16,
-        Bazen = 17
+        Bazen = 17,
+        BojNaNamesti = 18
 
     }
 }
