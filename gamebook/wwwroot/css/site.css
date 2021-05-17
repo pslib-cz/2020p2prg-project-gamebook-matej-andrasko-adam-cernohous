@@ -177,3 +177,13 @@ a:hover{
 .hp li img{
     width:3vw;
 }
+.bosshp{
+    display:flex;
+    position:absolute;
+    bottom:0px;
+    right:0px;
+    flex-direction:row;
+}
+.bosshp img{
+    width:5vw;
+}

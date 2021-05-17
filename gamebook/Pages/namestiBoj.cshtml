@@ -40,6 +40,12 @@
     </div>
 
 </div>
+<div class="bosshp">
+    @for (int i = 0; i < Model.bossHP; i++)
+    {
+        <img src="~/img/boss_hp.png" />
+    }
+</div>
 <a id="hit" asp-page="namestiBoj" asp-page-handler="Hit" asp-route-id="@Models.Places.BojNaNamesti" style="visibility:hidden;">hit</a>
 @if (Model.bossAlive == true)
 {

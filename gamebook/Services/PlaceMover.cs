@@ -68,11 +68,13 @@ namespace gamebook.Services
             new Connection { From = Places.Vezeni, NextPlace = Places.Byt, Description = "<p>ODĚJÍT Z VĚZENÍ</p>" },
             new Connection { From = Places.Bazen, NextPlace = Places.Mapa, Description = "<p>ZPĚT NA MAPU</p>" },
             new Connection { From = Places.Bazen, NextPlace = Places.Bazen, MoneyPlace = "Bazénové skříňky", Moneydesc = "VYKRÁST SKŘÍŇKU", SpecialPlace = "Bazen" },
-            new Connection { From = Places.Trafika, NextPlace = Places.Trafika, BuyingPlace = "Nákup Cíg", HpUp = 1, Cost = 200, Description="KOUPIT CÍGA (HP+1 CASH -200)" },
-            new Connection { From = Places.Benzinka, NextPlace = Places.Benzinka, BuyingPlace = "Nákup párku v rohlíku", HpUp = 1, Cost = 100, Description = "KOUPIT NEJLUXUSNĚJŠÍ PÁREK V ROHLÍKU V OKOLOÍ (HP+1 CASH -100)" },
-            new Connection { From = Places.ArmyShop, NextPlace = Places.ArmyShop,Description="KOUPIT GLOCK (-10000)", SpecialPlace="ArmyShop"},
-            new Connection { From = Places.Namesti, NextPlace = Places.BojNaNamesti, Description = "ZBÍT NĚKOHO KVŮLI PENĚZŮM", SpecialPlace = "namestiBoj"},
+            new Connection { From = Places.Trafika, NextPlace = Places.Trafika, BuyingPlace = "Nákup Cíg", HpUp = 1, Cost = 200, Description="<p>KOUPIT CÍGA (HP+1 CASH -200)</p>" },
+            new Connection { From = Places.Benzinka, NextPlace = Places.Benzinka, BuyingPlace = "Nákup párku v rohlíku", HpUp = 1, Cost = 100, Description = "<p>KOUPIT NEJLUXUSNĚJŠÍ PÁREK V ROHLÍKU V OKOLOÍ (HP+1 CASH -100)</p>" },
+            new Connection { From = Places.ArmyShop, NextPlace = Places.ArmyShop,Description="<p>KOUPIT GLOCK (-10000)</p>", SpecialPlace="ArmyShop"},
+            new Connection { From = Places.Namesti, NextPlace = Places.BojNaNamesti, Description = "<p>ZBÍT NĚKOHO KVŮLI PENĚZŮM</p>", SpecialPlace = "namestiBoj"},
+            new Connection { From = Places.BojNaNamesti, NextPlace = Places.Namesti, Description = "<p>ZPĚT NA NÁMĚSTÍ</p>" },
             new Connection { From = Places.BojNaNamesti, NextPlace = Places.BojNaNamesti, MoneyPlace = "Boj Na Náměstí",Moneydesc="DÁT RÁNU", SpecialPlace = "BojNaNamesti"},
+
 
             //---------------------
             //dialog sekvence kfc
