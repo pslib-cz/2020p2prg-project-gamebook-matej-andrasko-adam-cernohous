@@ -41,7 +41,7 @@ namespace gamebook.Pages
             _dd = dd;
         }
 
-        public void OnGet(Places id, int m)
+        public ActionResult OnGet(Places id, int m)
         {
             State = _ss.LoadOrCreate(KEY);
             State.Location = id;
@@ -77,9 +77,11 @@ namespace gamebook.Pages
                 number = _rn.Next(0, Location.Sound.Count);
                 Sound = Location.Sound[number];
             }
-
-
-
+            if(HP <= 0)
+            {
+                return RedirectToPage("GameOver");
+            }
+            return Page();
 
         }
         public void OnGetMoneyGet(Places id, int m)

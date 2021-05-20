@@ -14,8 +14,9 @@ namespace gamebook.Pages
     {
         private const string KEY2 = "character";
         private const string KEY4 = "list";
+        private const string KEY5 = "hp";
         private readonly ISessionStorage<GameState> _dd;
-
+        private readonly ISessionStorage<GameState> _ss;
         public IndexModel(ISessionStorage<GameState> dd)
         {
             _dd = dd;
@@ -25,14 +26,21 @@ namespace gamebook.Pages
         public Characters Character { get; set; }
         public GameState Chload { get; set; }
         public List<Item> itemy { get; set; } = null;
-        public int HP { get; set; } = 0;
+        public GameState State { get; set; }
+        public int HP { get; set; } = 5;
         public int Money { get; set; } = 0; //jen tak
 
         public void OnGet()
         {
+
             Chload = _dd.LoadOrCreate(KEY4);
             itemy = Chload.Items;
             _dd.Save(KEY4, Chload);
+
+            State = _ss.LoadOrCreate(KEY5);
+            State.HP = 5;
+            _ss.Save(KEY5, State);
+
         }
         public ActionResult OnPost()
         {

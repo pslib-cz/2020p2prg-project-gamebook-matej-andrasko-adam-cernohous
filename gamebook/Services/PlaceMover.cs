@@ -23,9 +23,9 @@ namespace gamebook.Services
             new Location { Title = "Varna", Description = "Tady vyrábíš to nejčistší piko ve městě!", Pic = "varna.jpg"},
             new Location { Title = "Letiště", Description = "Tvoje cesta pryč z tohohle MORDORU!", Pic="letiste.jpg" },
             new Location { Title = "Mapa", Description = "Mapa tohohle prohnilýho města.", Pic ="mapa.JPG" },
-            new Location { Title = "KFC", Description="Manažer prodejny: Zase pozdě a uplně vožralej, ale tentokrát už ti to nedaruju. Sbal si všechny svoje věci a vypadni.", Pic="kfc.png"},
-            new Location { Title= "KFC",Description = "Manažer prodejny: Nepros a vypadni, vypadni!!!",Pic="kfc.png" },//DIAL1_1
-            new Location { Title="KFC", Description = "Manažer prodejny: Co jsem řekl to platí, takových co přišli jen jednou a víckrát se neukázali mám dost.", Pic="kfc.png"},//DIAL_1_1_1
+            new Location { Title = "KFC", Description="Manažer prodejny: Zase pozdě a uplně vožralej, ale tentokrát už ti to nedaruju. Sbal si všechny svoje věci a vypadni.", Pic="kfc.png", Sound = new List<string> { "kfcdialog_veci.mp3" } },
+            new Location { Title= "KFC",Description = "Manažer prodejny: Nepros a vypadni, vypadni!!!",Pic="kfc.png", Sound = new List<string> { "kfcdialog_vypadni.mp3" } },//DIAL1_1
+            new Location { Title="KFC", Description = "Manažer prodejny: Co jsem řekl to platí, takových co přišli jen jednou a víckrát se neukázali mám dost.", Pic="kfc.png", Sound = new List<string> { "kfcdialog_plati.mp3" } },//DIAL_1_1_1
             new Location { Title = "Zakoutí Fugnerky", Description = "Místo kde se nejlépe dealuji piko", Pic = "sellpiko.png", Sound= new List<string>{"pernik1sound.mp3", "pernik2sound.mp3", "pernik3sound.mp3" } },
             new Location { Title= "Vězení", Description = "Byl jsi chycen při páchání trestné činnosti a byli ti sebrány všechny věci", Pic = "vezeni.png"},
             new Location { Title = "Bazén", Description = "Místo kde ti stačí jen ždibet štěstí aby jsi se dostal k penězům", Pic = "skrinky.jpg" },

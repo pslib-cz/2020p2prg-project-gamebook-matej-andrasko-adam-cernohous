@@ -36,6 +36,7 @@ namespace gamebook.Pages
         public string Sound { get; set; }
         public int bossHP { get; set; }
         public bool bossAlive { get; set; }
+        public int bossHPbefore { get; set; }
 
         public namestiBojModel(ISessionStorage<GameState> ss, IPlaceMover pm, ISessionStorage<GameState> dd)
         {
@@ -70,7 +71,7 @@ namespace gamebook.Pages
 
 
             State = _ss.LoadOrCreate(KEY6);
-            bossAlive = State.bossAlive;
+            bossAlive = State.BossAlive;
             _ss.Save(KEY6, State);
             
             State = _ss.LoadOrCreate(KEY7);
@@ -116,25 +117,17 @@ namespace gamebook.Pages
             _ss.Save(KEY5, State);
             if (HP <= 0)
             {
-                return RedirectToPage("Privacy");
+                return RedirectToPage("GameOver");
             }
 
             State = _ss.LoadOrCreate(KEY6);
-            bossAlive = State.bossAlive;
+            bossAlive = State.BossAlive;
             _ss.Save(KEY6, State);
 
             State = _ss.LoadOrCreate(KEY7);
             bossHP = State.bossHP;
             _ss.Save(KEY7, State);
-            if (bossHP <= 0)
-            {
-                State = _ss.LoadOrCreate(KEY6);
-                bossAlive = State.bossAlive;
-                bossAlive = false;
-                State.bossAlive = bossAlive;
-                _ss.Save(KEY6, State);
 
-            }
 
 
             Location = _pm.GetLocation(id);
@@ -143,6 +136,7 @@ namespace gamebook.Pages
         }
         public void OnGetDamageGlock (Places id)
         {
+            bossHPbefore = bossHP;
             State = _ss.LoadOrCreate(KEY);
             State.Location = id;
             _ss.Save(KEY, State);
@@ -164,22 +158,36 @@ namespace gamebook.Pages
             _ss.Save(KEY5, State);
 
             State = _ss.LoadOrCreate(KEY6);
-            bossAlive = State.bossAlive;
+            bossAlive = State.BossAlive;
             _ss.Save(KEY6, State);
 
             State = _ss.LoadOrCreate(KEY7);
             bossHP = State.bossHP;
-            bossHP -= _rn.Next(2, 5);
+            bossHP -= _rn.Next(3, 5);
             State.bossHP = bossHP;
             _ss.Save(KEY7, State);
 
+            if (bossHP <= 0)
+            {
+                State = _ss.LoadOrCreate(KEY6);
+                bossAlive = State.BossAlive;
+                bossAlive = false;
+                State.BossAlive = bossAlive;
+                _ss.Save(KEY6, State);
+
+                Chload = _dd.LoadOrCreate(KEY3);
+                Money = Chload.Money;
+                Money = Money + 3000;
+                Chload.Money = Money;
+                _dd.Save(KEY3, Chload);
+            }
 
             Location = _pm.GetLocation(id);
             Connections = _pm.GetConnectionsFrom(id);
-
         }
         public void OnGetDamage(Places id)
         {
+            bossHPbefore = bossHP;
             State = _ss.LoadOrCreate(KEY);
             State.Location = id;
             _ss.Save(KEY, State);
@@ -201,15 +209,30 @@ namespace gamebook.Pages
             _ss.Save(KEY5, State);
 
             State = _ss.LoadOrCreate(KEY6);
-            bossAlive = State.bossAlive;
+            bossAlive = State.BossAlive;
             _ss.Save(KEY6, State);
 
             State = _ss.LoadOrCreate(KEY7);
             bossHP = State.bossHP;
-            bossHP -= _rn.Next(0, 2);
+            bossHP -= _rn.Next(1, 2);
             State.bossHP = bossHP;
             _ss.Save(KEY7, State);
 
+            if (bossHP <= 0)
+            {
+                State = _ss.LoadOrCreate(KEY6);
+                bossAlive = State.BossAlive;
+                bossAlive = false;
+                State.BossAlive = bossAlive;
+                _ss.Save(KEY6, State);
+
+                Chload = _dd.LoadOrCreate(KEY3);
+                Money = Chload.Money;
+                Money = Money + 3000;
+                Chload.Money = Money;
+                _dd.Save(KEY3, Chload);
+
+            }
 
             Location = _pm.GetLocation(id);
             Connections = _pm.GetConnectionsFrom(id);
