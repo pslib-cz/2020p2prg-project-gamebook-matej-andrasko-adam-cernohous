@@ -122,8 +122,12 @@ namespace gamebook.Pages
             Location = _pm.GetLocation(id);
             Connections = _pm.GetConnectionsFrom(id);
         }
-        public void OnGetProdat(Places id, int m)
+        public ActionResult OnGetProdat(Places id, int m)
         {
+            if(_pm.AntiMoneyCheat(m) == false)
+            {
+                return RedirectToPage("GameOver");
+            }
             State = _ss.LoadOrCreate(KEY);
             State.Location = id;
             _ss.Save(KEY, State);
@@ -150,6 +154,8 @@ namespace gamebook.Pages
 
             Location = _pm.GetLocation(id);
             Connections = _pm.GetConnectionsFrom(id);
+
+            return Page();
         }
     }
 }

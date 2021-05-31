@@ -134,5 +134,16 @@ namespace gamebook.Services
             }
             return false;
         }
+        public bool AntiMoneyCheat(int m)
+        {
+            for (int i = 0; i < _map.Count; i++)
+            {
+                if (_map[i].MoneyGet == m)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
