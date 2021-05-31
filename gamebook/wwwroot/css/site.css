@@ -187,3 +187,24 @@ a:hover{
 .bosshp img{
     width:3vw;
 }
+.gameover-element {
+    text-align: center;
+    text-decoration: none;
+    font-size: 50px;
+}
+.gameover {
+    list-style-type: none;
+}
+.gameover .gameover-element > a{
+    color:black;
+    border: solid 3px black;
+    text-decoration:none;
+    padding-right:10px;
+    padding-left:10px;
+}
+.gameover .gameover-element > a:hover {
+    color: red;
+    background-color:black;
+    text-decoration:none;
+    border: solid 3px red;
+}

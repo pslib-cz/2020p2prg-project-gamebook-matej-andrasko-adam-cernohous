@@ -13,13 +13,16 @@ namespace gamebook.Pages
     public class IndexModel : PageModel
     {
         private const string KEY2 = "character";
+        private const string KEY3 = "money";
         private const string KEY4 = "list";
         private const string KEY5 = "hp";
+
         private readonly ISessionStorage<GameState> _dd;
         private readonly ISessionStorage<GameState> _ss;
-        public IndexModel(ISessionStorage<GameState> dd)
+        public IndexModel(ISessionStorage<GameState> dd, ISessionStorage<GameState> ss)
         {
             _dd = dd;
+            _ss = ss;
         }
 
         [BindProperty]
@@ -40,6 +43,11 @@ namespace gamebook.Pages
             State = _ss.LoadOrCreate(KEY5);
             State.HP = 5;
             _ss.Save(KEY5, State);
+
+            Chload = _ss.LoadOrCreate(KEY3);
+            Chload.Money = Money;
+            _ss.Save(KEY3, Chload);
+            
 
         }
         public ActionResult OnPost()

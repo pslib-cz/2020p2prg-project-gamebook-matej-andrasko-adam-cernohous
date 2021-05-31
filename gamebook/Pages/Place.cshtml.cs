@@ -16,6 +16,7 @@ namespace gamebook.Pages
         private const string KEY3 = "money";
         private const string KEY4 = "list";
         private const string KEY5 = "hp";
+        private const string KEYCHECK = "CHECK";
         private readonly ISessionStorage<GameState> _ss;
         private readonly ISessionStorage<GameState> _dd;
         private readonly IPlaceMover _pm;
@@ -63,10 +64,21 @@ namespace gamebook.Pages
             HP = State.HP;
             _ss.Save(KEY5, State);
 
-
+            State = _ss.LoadOrCreate(KEYCHECK);
+            State.Current = id;
+            _ss.Save(KEYCHECK, State);
 
             Location = _pm.GetLocation(id);
             Connections = _pm.GetConnectionsFrom(id);
+            if(_pm.IsNavigationLegitimate(State.Check, State.Current, State) == false)
+            {
+                return RedirectToPage("GameOver");
+            }
+            
+            
+            State = _ss.LoadOrCreate(KEYCHECK);
+            State.Check = id;
+            _ss.Save(KEYCHECK, State);
 
             if (Location.Sound is null)
             {

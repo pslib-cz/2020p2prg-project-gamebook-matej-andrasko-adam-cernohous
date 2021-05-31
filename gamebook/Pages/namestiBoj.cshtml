@@ -52,21 +52,10 @@
     <div class="locations-imgs">
         <img src="~/img/@Model.Location.Pic" />
     </div>
-    @if (Model.itemy.Contains(Models.Item.Glock)&& Model.bossHP!= Model.bossHPbefore)
-    {
-        <audio autoplay>
-            <source src="~/sound/glock.mp3" type="audio/mpeg">
-        </audio>
-    }
-    else if (Model.bossHP < 10 && Model.bossHP != Model.bossHPbefore)
-    {
-        <audio autoplay>
-            <source src="~/sound/punch.mp3" type="audio/mpeg">
-        </audio>
-    }
 
     <script>
         setTimeout(function () { document.getElementById("hit").click() }, 1500)
+
     </script>
 }
 else

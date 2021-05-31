@@ -9,6 +9,7 @@ namespace gamebook.Services
     public interface IPlaceMover
     {
         bool ExistLocation(Places id);
+        bool IsNavigationLegitimate(Places from, Places to, GameState state);
         Location GetLocation(Places id);
         List<Connection> GetConnectionsFrom(Places id);
         List<Connection> GetConnectionsTo(Places id);

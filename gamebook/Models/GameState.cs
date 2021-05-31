@@ -13,6 +13,8 @@ namespace gamebook.Models
         public int Money { get; set; }
         public int bossHP = 10;
         public bool BossAlive { get; set; } = true;
+        public Places Check { get; set; }
+        public Places Current { get; set; }
 
         public List<Item> Items { get; set; } = new List<Item>();
         

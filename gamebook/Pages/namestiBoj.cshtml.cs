@@ -37,6 +37,7 @@ namespace gamebook.Pages
         public int bossHP { get; set; }
         public bool bossAlive { get; set; }
         public int bossHPbefore { get; set; }
+        private const string KEYCHECK = "CHECK";
 
         public namestiBojModel(ISessionStorage<GameState> ss, IPlaceMover pm, ISessionStorage<GameState> dd)
         {
@@ -46,7 +47,7 @@ namespace gamebook.Pages
         }
 
 
-        public void OnGet(Places id)
+        public ActionResult OnGet(Places id)
         {
 
             State = _ss.LoadOrCreate(KEY);
@@ -77,10 +78,22 @@ namespace gamebook.Pages
             State = _ss.LoadOrCreate(KEY7);
             bossHP = State.bossHP;
             _ss.Save(KEY7, State);
+            State = _ss.LoadOrCreate(KEYCHECK);
+            State.Current = id;
+            _ss.Save(KEYCHECK, State);
 
 
             Location = _pm.GetLocation(id);
             Connections = _pm.GetConnectionsFrom(id);
+            if (_pm.IsNavigationLegitimate(State.Check, State.Current, State) == false)
+            {
+                return RedirectToPage("GameOver");
+            }
+
+
+            State = _ss.LoadOrCreate(KEYCHECK);
+            State.Check = id;
+            _ss.Save(KEYCHECK, State);
 
             if (Location.Sound is null)
             {
@@ -91,6 +104,7 @@ namespace gamebook.Pages
                 number = _rn.Next(0, Location.Sound.Count);
                 Sound = Location.Sound[number];
             }
+            return Page();
         }
         public ActionResult OnGetHit(Places id)
         {

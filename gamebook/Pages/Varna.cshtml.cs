@@ -30,6 +30,7 @@ namespace gamebook.Pages
         public GameState Chload { get; set; }
         public int Money { get; set; }
         public int HP { get; set; }
+        private const string KEYCHECK = "CHECK";
 
         public VarnaModel(ISessionStorage<GameState> ss, IPlaceMover pm, ISessionStorage<GameState> dd)
         {
@@ -38,7 +39,7 @@ namespace gamebook.Pages
             _dd = dd;
         }
 
-        public void OnGet(Places id)
+        public ActionResult OnGet(Places id)
         {
             State = _ss.LoadOrCreate(KEY);
             State.Location = id;
@@ -59,9 +60,22 @@ namespace gamebook.Pages
             State = _ss.LoadOrCreate(KEY5);
             HP = State.HP;
             _ss.Save(KEY5, State);
+            State = _ss.LoadOrCreate(KEYCHECK);
+            State.Current = id;
+            _ss.Save(KEYCHECK, State);
 
             Location = _pm.GetLocation(id);
             Connections = _pm.GetConnectionsFrom(id);
+            if (_pm.IsNavigationLegitimate(State.Check, State.Current, State) == false)
+            {
+                return RedirectToPage("GameOver");
+            }
+
+
+            State = _ss.LoadOrCreate(KEYCHECK);
+            State.Check = id;
+            _ss.Save(KEYCHECK, State);
+            return Page();
 
 
         }

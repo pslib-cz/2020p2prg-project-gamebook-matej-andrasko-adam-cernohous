@@ -60,11 +60,11 @@ namespace gamebook.Services
             new Connection { From = Places.LIDL, NextPlace = Places.LIDL, MoneyPlace = "LIDL", Moneydesc = "<p>PRACOVAT (+80)</p>", MoneyGet = 80 },
             new Connection { From = Places.LIDL,NextPlace = Places.Mapa, Description="<p>ZPĚT NA MAPU</p>"},
             new Connection { From = Places.Benzinka, NextPlace = Places.Benzinka, MoneyPlace = "Benzinka", Moneydesc = "<p>OKRÁST (+500)</p>", MoneyGet = 500 },
-            new Connection { From = Places.Varna, NextPlace = Places.Byt, Moneydesc = "<p>UVAŘIT PERNÍK (PERNÍK +1)</p>" },
+            new Connection { From = Places.Varna, NextPlace = Places.Varna, Moneydesc = "<p>UVAŘIT PERNÍK (PERNÍK +1)</p>", SpecialPlace = "Varna"},
             new Connection { From = Places.Varna, NextPlace = Places.Byt, Description = "<p>ZPĚT DO BYTU</p>" },
             new Connection { From = Places.Fgn, NextPlace = Places.Zakouti, Description = "<p>JÍT PRODAT TVŮJ ORGINÁLNÍ VÝROBEK</p>", SpecialPlace = "Prodavani" },
             new Connection { From = Places.Zakouti, NextPlace = Places.Fgn, Description = "<p>ZPĚT NA FGN</p>" },
-            new Connection { From = Places.Zakouti, NextPlace = Places.Fgn, MoneyPlace = "Zakoutí Fgn", Moneydesc = "PRODAT TVŮJ VÝROBEK(+250)", MoneyGet = 250 },
+            new Connection { From = Places.Zakouti, NextPlace = Places.Zakouti, MoneyPlace = "Zakoutí Fgn", Moneydesc = "PRODAT TVŮJ VÝROBEK(+250)", MoneyGet = 250, SpecialPlace="Prodavani" },
             new Connection { From = Places.Vezeni, NextPlace = Places.Byt, Description = "<p>ODĚJÍT Z VĚZENÍ</p>" },
             new Connection { From = Places.Bazen, NextPlace = Places.Mapa, Description = "<p>ZPĚT NA MAPU</p>" },
             new Connection { From = Places.Bazen, NextPlace = Places.Bazen, MoneyPlace = "Bazénové skříňky", Moneydesc = "VYKRÁST SKŘÍŇKU", SpecialPlace = "Bazen" },
@@ -118,6 +118,21 @@ namespace gamebook.Services
                 return _locations[(int)id];
             }
             throw new InvalidLocationException();
+        }
+        public bool IsNavigationLegitimate(Places from, Places to, GameState state)
+        {
+            for (int i = 0; i < _map.Count; i++)
+            {
+                if (_map[i].From == from && _map[i].NextPlace == to)
+                {
+                    return true;
+                }
+            }
+            if (from == 0 || to == 0)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

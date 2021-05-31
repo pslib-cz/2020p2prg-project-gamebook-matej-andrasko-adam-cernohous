@@ -34,6 +34,7 @@ namespace gamebook.Pages
         public int HP { get; set; }
         public int number { get; set; }
         public string Sound { get; set; }
+        private const string KEYCHECK = "CHECK";
 
         public ProdavaniModel(ISessionStorage<GameState> ss, IPlaceMover pm, ISessionStorage<GameState> dd)
         {
@@ -42,7 +43,7 @@ namespace gamebook.Pages
             _dd = dd;
         }
 
-        public void OnGet(Places id)
+        public ActionResult OnGet(Places id)
         {
             Police = _rn.Next(0, 10);
             State = _ss.LoadOrCreate(KEY);
@@ -64,9 +65,21 @@ namespace gamebook.Pages
             State = _ss.LoadOrCreate(KEY5);
             HP = State.HP;
             _ss.Save(KEY5, State);
+            State = _ss.LoadOrCreate(KEYCHECK);
+            State.Current = id;
+            _ss.Save(KEYCHECK, State);
 
             Location = _pm.GetLocation(id);
             Connections = _pm.GetConnectionsFrom(id);
+            if (_pm.IsNavigationLegitimate(State.Check, State.Current, State) == false)
+            {
+                return RedirectToPage("GameOver");
+            }
+
+
+            State = _ss.LoadOrCreate(KEYCHECK);
+            State.Check = id;
+            _ss.Save(KEYCHECK, State);
             if (Location.Sound is null)
             {
 
@@ -76,7 +89,7 @@ namespace gamebook.Pages
                 number = _rn.Next(0, Location.Sound.Count);
                 Sound = Location.Sound[number];
             }
-
+            return Page();
 
         }
         public void OnGetVezeni (Places id)
