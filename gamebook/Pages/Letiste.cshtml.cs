@@ -66,7 +66,7 @@ namespace gamebook.Pages
             Connections = _pm.GetConnectionsFrom(id);
             if (_pm.IsNavigationLegitimate(State.Check, State.Current, State) == false)
             {
-                return RedirectToPage("GameOver");
+                return RedirectToPage("CheaterScreen");
             }
 
 

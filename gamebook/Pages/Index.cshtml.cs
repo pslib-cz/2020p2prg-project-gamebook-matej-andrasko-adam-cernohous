@@ -36,8 +36,8 @@ namespace gamebook.Pages
         public void OnGet()
         {
 
-            Chload = _dd.LoadOrCreate(KEY4);
-            itemy = Chload.Items;
+            State = _dd.LoadOrCreate(KEY4);
+            State.Items = itemy;
             _dd.Save(KEY4, Chload);
 
             State = _ss.LoadOrCreate(KEY5);
