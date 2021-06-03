@@ -37,7 +37,7 @@ namespace gamebook.Pages
         public int Money { get; set; }
         public int HP { get; set; }
 
-        public void OnGet(Places id)
+        public ActionResult OnGet(Places id)
         {
             State = _ss.LoadOrCreate(KEY);
             State.Location = id;
@@ -51,6 +51,10 @@ namespace gamebook.Pages
 
             Chload = _dd.LoadOrCreate(KEY3);
             Money = Chload.Money;
+            if (Money < 20000)
+            {
+                return RedirectToPage("CheaterScreen");
+            }
             Money = 0;
             Chload.Money = Money;
             _dd.Save(KEY3, Chload);
@@ -71,6 +75,8 @@ namespace gamebook.Pages
 
             Location = _pm.GetLocation(id);
             Connections = _pm.GetConnectionsFrom(id);
+
+            return Page();
         }
     }
 }

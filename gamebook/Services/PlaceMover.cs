@@ -128,7 +128,7 @@ namespace gamebook.Services
                     return true;
                 }
             }
-            if (from == 0 || to == 0)
+            if (to == 0)
             {
                 return true;
             }
