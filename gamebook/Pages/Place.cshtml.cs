@@ -100,7 +100,7 @@ namespace gamebook.Pages
         {
             if(_pm.AntiMoneyCheat(m) == false)
             {
-                return RedirectToPage("GameOver");
+                return RedirectToPage("CheaterScreen");
             }
             State = _ss.LoadOrCreate(KEY);
             State.Location = id;
